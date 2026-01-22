@@ -1,1 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* Background colors */
+    --color-bg-app: #f8f8fb;
+    --color-bg-header: #373b53;
+    --color-bg-card: #ffffff;
+    --color-backdrop-effect: #000000ad;
+
+    /* Texts colors */
+    --color-text-main: #0c0e16;
+    --color-text-muted: #7e88c3;
+    --color-text-subtle: #888eb0;
+
+    /* Buttons colors */
+    --color-primary: #7c5dfa;
+    --color-secondary: #373b53;
+    --color-danger: #ec5757;
+    --color-ghost: #f9fafe;
+
+    /* Buttons hover background colors */
+    --color-primary-hover: #9277ff;
+    --color-secondary-hover: #0c0e16;
+    --color-danger-hover: #ff9797;
+    --color-ghost-hover: #dfe3fa;
+  }
+
+  .dark {
+    /* Background colors */
+    --color-bg-app: #141625;
+    --color-bg-header: #1e2139;
+    --color-bg-card: #1e2139;
+    --color-text-default: #ffffff;
+
+    /* Text colors */
+    --color-text-secondary: #dfe3fa;
+    /* --color-text-tertiary:   */
+
+    /* Buttons colors */
+    --color-primary-button: #7c5dfa;
+    --color-secondary-button: #373b53;
+    --color-danger-button: #ec5757;
+    --color-ghost-button: #252945;
+
+    /* Buttons hover background colors */
+    --color-primary-button-hover: #9277ff;
+    --color-secondary-button-hover: #1e2139;
+    --color-danger-button-hover: #ff9797;
+    --color-ghost-button-hover: #dfe3fa;
+  }
+
+  body {
+    font-family: "League Spartan", sans-serif;
+    background-color: var(--color-bg-app);
+  }
+
+  th,
+  td {
+    font-weight: unset;
+    padding-block: 1rem;
+  }
+}
+
+@theme {
+  /* Background colors */
+  --color-card: var(--color-bg-card);
+  --color-header: var(--color-bg-header);
+  --color-backdrop: var(--color-backdrop-effect);
+
+  /* Text colors */
+  --color-main: var(--color-text-main);
+  --color-muted: var(--color-text-muted);
+  --color-subtle: var(--color-text-subtle);
+
+  /* Buttons colors */
+  --color-btn-primary: var(--color-primary);
+  --color-btn-secondary: var(--color-secondary);
+  --color-btn-danger: var(--color-danger);
+  --color-btn-ghost: var(--color-ghost);
+
+  /* Buttons hover background colors */
+  --color-btn-primary-hv: var(--color-primary-hover);
+  --color-btn-secondary-hv: var(--color-secondary-hover);
+  --color-btn-danger-hv: var(--color-danger-hover);
+  --color-btn-ghost-hv: var(--color-ghost-hover);
+
+  /* Corner radius */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+
+  /* Shadows */
+  --shadow-card: 0 10px 10px -10px #48549f1a;
+}
+
+@layer utilities {
+  .text-heading {
+    font-size: clamp(24px, 20.7458px + 1.0169vw, 36px);
+    letter-spacing: -0.75px;
+    @apply font-bold;
+  }
+
+  .text-body {
+    font-size: clamp(13px, 11.6441px + 0.6237vw, 15px);
+    letter-spacing: -0.1px;
+    font-weight: 500;
+  }
+
+  .text-body-bold {
+    font-size: clamp(15px, 13.1017px + 0.5932vw, 18px);
+    font-weight: bold;
+    letter-spacing: -0.25px;
+  }
+}
+
+@layer components {
+  .logo-brand-shape {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 23px 22px;
+  }
+  .logo-brand-shape::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #7c5dfa;
+    border-radius: 0 20px 20px 0;
+  }
+  .logo-brand-shape::after {
+    content: "";
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #9277ff;
+    border-radius: 20px 0 20px 0;
+  }
+}
