@@ -88,6 +88,8 @@
   --color-btn-danger-hv: var(--color-danger-hover);
   --color-btn-ghost-hv: var(--color-ghost-hover);
 
+  --color-card-outline: var(--color-primary);
+
   /* Corner radius */
   --radius-xs: 4px;
   --radius-sm: 6px;
