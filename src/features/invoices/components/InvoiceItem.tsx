@@ -1,18 +1,31 @@
 import { InvoiceDataType } from "../types/invoiceList.types";
+import DetailsCard from "./details/DetailsCard";
 import InvoiceSummaryCard from "./InvoiceSummaryCard";
 
-const InvoiceItem = ({ invoice }: { invoice: InvoiceDataType }) => {
+const InvoiceItem = ({
+  invoice,
+  isFull,
+}: {
+  invoice: InvoiceDataType;
+  isFull: boolean;
+}) => {
   const onClick = () => {
     console.log(`Show invoice ${invoice.id}`);
   };
   return (
-    <InvoiceSummaryCard
-      key={invoice.id}
-      clientName={invoice.clientName}
-      invoiceId={invoice.id}
-      status={invoice.status}
-      onClick={onClick}
-    />
+    <>
+      {isFull ? (
+        <DetailsCard invoice={invoice} />
+      ) : (
+        <InvoiceSummaryCard
+          key={invoice.id}
+          clientName={invoice.clientName}
+          invoiceId={invoice.id}
+          status={invoice.status}
+          onClick={onClick}
+        />
+      )}
+    </>
   );
 };
 
