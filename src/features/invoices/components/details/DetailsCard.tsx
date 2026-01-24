@@ -4,6 +4,7 @@ import AddressItem from "./AddressItem";
 import { InvoiceDataType } from "../../types/invoiceList.types";
 import ItemsContainer from "./ItemsContainer";
 import CTAButtons from "./CTAButtons";
+import DeletePrompt from "./DeletePrompt";
 
 const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
   return (
@@ -66,7 +67,7 @@ const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
         </div>
         <div className="w-full h-35 md:hidden"></div>
       </div>
-      {/* {del && <DeletePrompt invoiceId={invoice.id} />} */}
+      <DeletePrompt invoiceId={invoice.id} />
     </>
   );
 };
