@@ -1,9 +1,11 @@
 export type VariantKeys = "primary" | "secondary" | "danger" | "ghost";
 
 export interface ButtonProps {
-  label: string;
-  altLabel?: string;
-  variant: VariantKeys;
-  icon?: string;
+  content: { defaultText: string; altText: string };
+  feats: {
+    type: "button" | "reset" | "submit" | undefined;
+    variant: VariantKeys;
+    icon?: string;
+  };
   onClick: () => void;
 }

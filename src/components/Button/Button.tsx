@@ -2,18 +2,21 @@ import type { ButtonProps } from "./button.types";
 import getButtonStyle from "./button.style";
 import clsx from "clsx";
 
-const Button = ({ label, altLabel, variant, icon, onClick }: ButtonProps) => {
+const Button = ({ content, feats, onClick }: ButtonProps) => {
   return (
     <button
+      type={feats.type}
       onClick={onClick}
-      className={getButtonStyle(variant, Boolean(icon))}>
-      {icon && (
+      className={getButtonStyle(feats.variant, Boolean(feats.icon))}>
+      {feats.icon && (
         <div className="flex justify-center items-center bg-white w-8 aspect-square rounded-full">
-          <img src={icon} />
+          <img src={feats.icon} />
         </div>
       )}
-      <span className={clsx(altLabel && `max-md:hidden`)}>{label}</span>
-      {altLabel && <span className="md:hidden">{altLabel}</span>}
+      <span className={clsx(content.altText && `max-md:hidden`)}>
+        {content.defaultText}
+      </span>
+      {content.altText && <span className="md:hidden">{content.altText}</span>}
     </button>
   );
 };
