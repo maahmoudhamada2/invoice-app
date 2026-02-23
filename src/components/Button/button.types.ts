@@ -1,7 +1,7 @@
 export type VariantKeys = "primary" | "secondary" | "danger" | "ghost";
 
 export interface ButtonProps {
-  content: { defaultText: string; altText: string };
+  content: { defaultText: string; altText?: string };
   feats: {
     type: "button" | "reset" | "submit" | undefined;
     variant: VariantKeys;
