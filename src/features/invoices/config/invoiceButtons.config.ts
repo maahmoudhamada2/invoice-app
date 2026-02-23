@@ -3,46 +3,96 @@ import plusIcon from "@/assets/icons/plus-icon.svg";
 
 const invoiceButtonsConfig: InvoiceButtonsType = {
   newInvoice: {
-    label: "New Invoice",
-    altLabel: "New",
-    variant: "primary",
-    icon: plusIcon,
+    content: {
+      defaultText: "New Invoice",
+      altText: "New",
+    },
+    feats: {
+      variant: "primary",
+      type: "submit",
+      icon: plusIcon,
+    },
   },
   paid: {
-    label: "Mark as Paid",
-    variant: "primary",
+    content: {
+      defaultText: "Mark as Paid",
+    },
+    feats: {
+      variant: "primary",
+      type: "button",
+    },
   },
   draft: {
-    label: "Save as Draft",
-    variant: "secondary",
+    content: {
+      defaultText: "Save as Draft",
+    },
+    feats: {
+      variant: "secondary",
+      type: "button",
+    },
   },
   delete: {
-    label: "Delete",
-    variant: "danger",
+    content: {
+      defaultText: "Delete",
+    },
+    feats: {
+      variant: "danger",
+      type: "button",
+    },
   },
   edit: {
-    label: "Edit",
-    variant: "ghost",
+    content: {
+      defaultText: "Edit",
+    },
+    feats: {
+      variant: "ghost",
+      type: "button",
+    },
   },
   discard: {
-    label: "Discard",
-    variant: "ghost",
+    content: {
+      defaultText: "Discard",
+    },
+    feats: {
+      variant: "ghost",
+      type: "reset",
+    },
   },
   saveAndSend: {
-    label: "Save & Send",
-    variant: "primary",
+    content: {
+      defaultText: "Save & Send",
+    },
+    feats: {
+      variant: "primary",
+      type: "button",
+    },
   },
   saveChanges: {
-    label: "Save Changes",
-    variant: "primary",
+    content: {
+      defaultText: "Save Changes",
+    },
+    feats: {
+      variant: "primary",
+      type: "button",
+    },
   },
   cancel: {
-    label: "Cancel",
-    variant: "ghost",
+    content: {
+      defaultText: "Cancel",
+    },
+    feats: {
+      variant: "ghost",
+      type: "button",
+    },
   },
   newItem: {
-    label: "+ Add New Item",
-    variant: "ghost",
+    content: {
+      defaultText: "+ Add New Item",
+    },
+    feats: {
+      variant: "ghost",
+      type: "button",
+    },
   },
 };
 
