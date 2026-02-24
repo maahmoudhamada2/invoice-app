@@ -3,7 +3,7 @@ import StatusBadge from "../StatusBadge";
 import AddressItem from "./AddressItem";
 import { InvoiceDataType } from "../../types/invoiceList.types";
 import ItemsContainer from "./ItemsContainer";
-import CTAButtons from "./CTAButtons";
+import ButtonsGroup from "../ButtonsGroup";
 import DeletePrompt from "./DeletePrompt";
 
 const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
@@ -15,7 +15,7 @@ const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
             <p className="text-[#858BB2] text-body">Status</p>
             <StatusBadge status={invoice.status} />
           </div>
-          <CTAButtons />
+          <ButtonsGroup groupKey={"read"} />
         </header>
         <div
           className="bg-white p-6 rounded-md flex flex-col gap-y-7.75 
@@ -67,7 +67,7 @@ const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
         </div>
         <div className="w-full h-35 md:hidden"></div>
       </div>
-      <DeletePrompt invoiceId={invoice.id} />
+      {/* <DeletePrompt invoiceId={invoice.id} /> */}
     </>
   );
 };
