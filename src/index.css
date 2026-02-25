@@ -27,6 +27,8 @@
     --color-secondary-hover: #0c0e16;
     --color-danger-hover: #ff9797;
     --color-ghost-hover: #dfe3fa;
+
+    --color-outline: #dfe3fa;
   }
 
   .dark {
@@ -51,6 +53,8 @@
     --color-secondary-button-hover: #1e2139;
     --color-danger-button-hover: #ff9797;
     --color-ghost-button-hover: #dfe3fa;
+
+    --color-outline: #252945;
   }
 
   body {
@@ -89,6 +93,8 @@
   --color-btn-ghost-hv: var(--color-ghost-hover);
 
   --color-card-outline: var(--color-primary);
+
+  --color-input-outline: var(--color-outline);
 
   /* Corner radius */
   --radius-xs: 4px;
