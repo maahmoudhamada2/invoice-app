@@ -1,11 +1,12 @@
-import { useForm } from "react-hook-form";
 import ButtonsGroup from "./components/ButtonsGroup";
 import FieldSet from "./components/form/FieldSet";
 import ProjectItems from "./components/form/ProjectItems";
 import invoiceFieldsConfig from "./config/invoiceFields.config";
 import arrowLeft from "@/assets/icons/arrow-left-icon.svg";
+import useInvoiceForm from "./hooks/useInvoiceForm";
 
 const InvoiceForm = () => {
+  const formMethods = useInvoiceForm();
   return (
     <div className="px-6 pt-8.25 flex flex-col gap-5.5">
       <header className="flex flex-col gap-6.5 text-main">
@@ -15,12 +16,24 @@ const InvoiceForm = () => {
         </button>
         <h2 className="text-heading">New Invoice</h2>
       </header>
-      <form className="">
-        <FieldSet title="Bill From" fields={invoiceFieldsConfig.senderFields} />
-        <FieldSet title="Bill To" fields={invoiceFieldsConfig.clientFields} />
-        <FieldSet fields={invoiceFieldsConfig.metaFields} />
-        <ProjectItems />
+      <form onSubmit={formMethods.onSubmit} className="">
+        <FieldSet
+          title="Bill From"
+          fields={invoiceFieldsConfig.senderFields}
+          formMethods={formMethods}
+        />
+        <FieldSet
+          title="Bill To"
+          fields={invoiceFieldsConfig.clientFields}
+          formMethods={formMethods}
+        />
+        <FieldSet
+          fields={invoiceFieldsConfig.metaFields}
+          formMethods={formMethods}
+        />
+        {/* <ProjectItems /> */}
         <ButtonsGroup groupKey="create" />
+        <button type="submit">Send</button>
       </form>
     </div>
   );
