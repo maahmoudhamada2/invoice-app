@@ -1,5 +1,5 @@
 import { FormMethodsType } from "@/features/invoices/types/invoiceForm.types";
-
+import Input from "./Input";
 interface FormFieldProps {
   container: {
     size: string;
@@ -12,28 +12,17 @@ interface FormFieldProps {
     type: string;
     disabled: boolean;
   };
-  formMethods: FormMethodsType;
+  idPrefix?: string;
 }
 
-const FormField = ({
-  container,
-  label,
-  input,
-  formMethods,
-}: FormFieldProps) => {
-  const { register } = formMethods;
+const FormField = ({ container, label, input, idPrefix }: FormFieldProps) => {
+  const inputId = idPrefix ? `${idPrefix}${input.id}` : input.id;
   return (
     <div className={`relative flex flex-col gap-y-2.25 ${container.size}`}>
-      <label className="text-body text-muted" htmlFor={input.id}>
+      <label className="text-body text-muted" htmlFor={inputId}>
         {label.text}
       </label>
-      <input
-        {...register(input.id)}
-        className="text-main text-body-bold tracking-[-0.25px] px-5 pt-4.5 pb-3.75 not-disabled:border-2 border-input-outline rounded-xs disabled:text-subtle"
-        id={input.id}
-        type={input.type}
-        disabled={input.disabled}
-      />
+      <Input {...input} id={inputId} />
     </div>
   );
 };
