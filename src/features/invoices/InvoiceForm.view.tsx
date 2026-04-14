@@ -17,20 +17,9 @@ const InvoiceForm = () => {
         <h2 className="text-heading">New Invoice</h2>
       </header>
       <form onSubmit={formMethods.onSubmit} className="">
-        <FieldSet
-          title="Bill From"
-          fields={invoiceFieldsConfig.senderFields}
-          formMethods={formMethods}
-        />
-        <FieldSet
-          title="Bill To"
-          fields={invoiceFieldsConfig.clientFields}
-          formMethods={formMethods}
-        />
-        <FieldSet
-          fields={invoiceFieldsConfig.metaFields}
-          formMethods={formMethods}
-        />
+        <FieldSet title="Bill From" fields={invoiceFieldsConfig.senderFields} />
+        <FieldSet title="Bill To" fields={invoiceFieldsConfig.clientFields} />
+        <FieldSet fields={invoiceFieldsConfig.metaFields} />
         {/* <ProjectItems /> */}
         <ButtonsGroup groupKey="create" />
         <button type="submit">Send</button>

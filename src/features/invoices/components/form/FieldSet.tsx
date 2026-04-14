@@ -6,17 +6,17 @@ interface FieldSetProps {
   title?: string;
   fields: FormFieldType[];
   children?: ReactNode;
-  formMethods: FormMethodsType;
+  idPrefix?: string;
 }
 
-const FieldSet = ({ title, fields, children, formMethods }: FieldSetProps) => {
+const FieldSet = ({ idPrefix, title, fields, children }: FieldSetProps) => {
   return (
     <fieldset className="flex flex-wrap pb-10.25 gap-6">
       {title && (
         <legend className="mb-6 text-[#7c5dfa] text-body-bold">{title}</legend>
       )}
       {fields.map((field) => (
-        <FormField {...field} formMethods={formMethods} />
+        <FormField {...field} idPrefix={idPrefix} />
       ))}
       {children}
     </fieldset>
