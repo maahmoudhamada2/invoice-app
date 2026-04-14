@@ -3,7 +3,7 @@ import { FormFieldType } from "../types/invoiceForm.types";
 type FieldsKey = "senderFields" | "clientFields" | "metaFields" | "itemFields";
 type InvoiceFormShape = Record<FieldsKey, FormFieldType[]>;
 
-const addressFields = (idPrefix: string): FormFieldType[] => [
+const addressFields = (idPrefix: string) => [
   {
     container: {
       size: "w-full",
@@ -63,7 +63,9 @@ const invoiceFieldsConfig: InvoiceFormShape = {
   clientFields: [
     {
       container: { size: "w-full" },
-      label: { text: "Client's Name" },
+      label: {
+        text: "Client's Name",
+      },
       input: {
         id: "clientName",
         type: "text",

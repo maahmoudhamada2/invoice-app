@@ -16,7 +16,7 @@ const FieldSet = ({ idPrefix, title, fields, children }: FieldSetProps) => {
         <legend className="mb-6 text-[#7c5dfa] text-body-bold">{title}</legend>
       )}
       {fields.map((field) => (
-        <FormField {...field} idPrefix={idPrefix} />
+        <FormField key={field.input.id} {...field} idPrefix={idPrefix} />
       ))}
       {children}
     </fieldset>
