@@ -1,5 +1,11 @@
 import * as z from "zod";
 
+const formItemsSchema = z.object({
+  name: z.string(),
+  price: z.coerce.number(),
+  quantity: z.coerce.number(),
+});
+
 const formSchema = z.object({
   senderStreet: z.string().min(1),
   senderCity: z.string().min(1),
@@ -15,6 +21,7 @@ const formSchema = z.object({
   invoiceDate: z.iso.date(),
   paymentTerms: z.literal(["1", "7", "14", "30"]),
   projectDesc: z.string(),
+  items: z.array(formItemsSchema),
 });
 
 export default formSchema;
