@@ -5,10 +5,14 @@ import invoiceFieldsConfig from "./config/invoiceFields.config";
 import arrowLeft from "@/assets/icons/arrow-left-icon.svg";
 import useInvoiceForm from "./hooks/useInvoiceForm";
 import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import formSchema from "./schema/form.schema";
+import useInvoicesStore from "./store/useInvoicesStore";
 
 const InvoiceForm = () => {
   // const formMethods = useInvoiceForm();
-  const methods = useForm();
+  const methods = useForm({ resolver: zodResolver(formSchema) });
+  const createNewInvoice = useInvoicesStore((state) => state.createNewInvoice);
 
   return (
     <div className="px-6 pt-8.25 flex flex-col gap-5.5">
@@ -21,9 +25,7 @@ const InvoiceForm = () => {
       </header>
       <FormProvider {...methods}>
         <form
-          onSubmit={methods.handleSubmit((data) =>
-            console.log(`Data = `, data),
-          )}
+          onSubmit={methods.handleSubmit((data) => createNewInvoice(data))}
           className="">
           <FieldSet
             title="Bill From"
