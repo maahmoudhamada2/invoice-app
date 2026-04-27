@@ -1,7 +1,5 @@
-import InvoicesEmptyState from "./components/InvoicesEmptyState";
-import StatusBar from "./components/StatusBar";
-import InvoiceItem from "./components/InvoiceItem";
 import { InvoiceDataType } from "./types/invoiceList.types";
+import InvoicesList from "./components/InvoicesList";
 
 const invoices: InvoiceDataType[] = [
   {
@@ -235,21 +233,12 @@ const invoices: InvoiceDataType[] = [
   },
 ];
 
-const InvoiceList = () => {
+const InvoicePage = () => {
   return (
     <div className=" h-full flex flex-col px-6 pt-8 pb-26.25 gap-8 xl:px-63">
-      <StatusBar />
-      {invoices.length === 0 ? (
-        <InvoicesEmptyState />
-      ) : (
-        <div className="flex flex-col items-center gap-4">
-          {invoices.map((invoice) => (
-            <InvoiceItem key={invoice.id} invoice={invoice} />
-          ))}
-        </div>
-      )}
+      <InvoicesList invoices={invoices} />
     </div>
   );
 };
 
-export default InvoiceList;
+export default InvoicePage;
