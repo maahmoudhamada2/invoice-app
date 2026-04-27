@@ -17,6 +17,7 @@ export interface FormFieldType {
 }
 
 export type FormSchema = z.infer<typeof formSchema>;
+export type FormItemsSchema = FormSchema["items"];
 
 export interface FormMethodsType {
   register: UseFormRegister<FormSchema>;
