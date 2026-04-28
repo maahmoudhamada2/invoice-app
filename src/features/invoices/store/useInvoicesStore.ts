@@ -1,26 +1,32 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { InvoiceDataType } from "../types/invoiceList.types";
+import { InvoiceDataType, InvoiceStatus } from "../types/invoiceList.types";
 import { FormSchema } from "../types/invoiceForm.types";
 import formDataConverter from "../utils/formDataConverter";
 
 interface InvoicesStoreState {
   invoices: InvoiceDataType[] | [];
-
+  filterStatus: InvoiceStatus | "all";
   createNewInvoice: (formData: FormSchema) => void;
+  filterInvoices: (filterStatus: InvoiceStatus | "all") => void;
 }
 
-const useInvoicesStore = create(
-  persist<InvoicesStoreState>(
+const useInvoicesStore = create<InvoicesStoreState>()(
+  persist(
     (set, get) => ({
       invoices: [],
+      filterStatus: "all",
+
       createNewInvoice: (formData) => {
         const ids = get().invoices.map((invoice) => invoice.id);
         const newInvoice = formDataConverter(formData, ids);
         set((state) => ({ invoices: [...state.invoices, newInvoice] }));
       },
+
+      filterInvoices: (filterStatus) => set({ filterStatus: filterStatus }),
     }),
-    { name: "invoices" },
+
+    { name: "invoices", partialize: (state) => ({ invoices: state.invoices }) },
   ),
 );
 

@@ -105,6 +105,7 @@
 
   /* Shadows */
   --shadow-card: 0 10px 10px -10px #48549f1a;
+  --shadow-filter-card: 0 10px 20px 0 #48549f40;
 }
 
 @layer utilities {
