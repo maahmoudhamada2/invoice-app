@@ -5,17 +5,31 @@ import { InvoiceDataType } from "../../types/invoiceList.types";
 import ItemsContainer from "./ItemsContainer";
 import ButtonsGroup from "../ButtonsGroup";
 import DeletePrompt from "./DeletePrompt";
+import arrowLeft from "@/assets/icons/arrow-left-icon.svg";
+import useAppUiStore from "@/store/useAppUiStore";
 
 const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
+  const returnHome = useAppUiStore((state) => state.returnHome);
   return (
     <>
-      <div className="md:pb-33.75 xl:pb-13.5">
-        <header className="bg-white flex max-md:flex-col justify-between items-start gap-7.75 mb-4 rounded-md">
-          <div className="w-full p-6 pb-6.75 rounded-md bg-white flex items-baseline max-md:justify-between md:gap-5  ">
-            <p className="text-[#858BB2] text-body">Status</p>
-            <StatusBadge status={invoice.status} />
+      <div className="flex flex-col gap-[24px] md:pb-33.75 xl:pb-13.5">
+        <header className="flex flex-col gap-[31px]">
+          <button
+            onClick={() => returnHome()}
+            className="cursor-pointer text-body-bold flex items-center gap-6 hover:text-muted">
+            <img
+              src={arrowLeft}
+              alt="A blue magnet arrow points to left side"
+            />
+            Go back
+          </button>
+          <div className="flex w-full bg-white rounded-md">
+            <div className="w-full p-6 pb-6.75 rounded-md bg-white flex items-baseline max-md:justify-between md:gap-5  ">
+              <p className="text-[#858BB2] text-body">Status</p>
+              <StatusBadge status={invoice.status} />
+            </div>
+            <ButtonsGroup groupKey={"read"} />
           </div>
-          <ButtonsGroup groupKey={"read"} />
         </header>
         <div
           className="bg-white p-6 rounded-md flex flex-col gap-y-7.75 
