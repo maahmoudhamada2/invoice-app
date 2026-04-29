@@ -9,7 +9,7 @@ const App = () => {
     <div className="flex flex-col xl:flex-row">
       <Header />
       <main className="relative">
-        {view === "list" && <InvoicePage />}
+        {view === "invoices" && <InvoicePage />}
         {view === "form" && <InvoiceForm />}
       </main>
     </div>

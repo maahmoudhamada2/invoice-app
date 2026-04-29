@@ -1,3 +1,4 @@
+import useAppUiStore from "@/store/useAppUiStore";
 import { InvoiceDataType } from "../types/invoiceList.types";
 import DetailsCard from "./details/DetailsCard";
 import InvoiceSummaryCard from "./InvoiceSummaryCard";
@@ -9,8 +10,9 @@ const InvoiceItem = ({
   invoice: InvoiceDataType;
   isFull: boolean;
 }) => {
+  const showInvoice = useAppUiStore((state) => state.showInvoice);
   const onClick = () => {
-    console.log(`Show invoice ${invoice.id}`);
+    showInvoice(invoice.id);
   };
   return (
     <>
