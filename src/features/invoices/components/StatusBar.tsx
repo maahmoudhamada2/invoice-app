@@ -1,8 +1,10 @@
 import invoiceButtonsConfig from "../config/invoiceButtons.config";
 import Button from "../../../components/Button/Button";
 import Filters from "./Filters";
+import useAppUiStore from "@/store/useAppUiStore";
 
 const StatusBar = () => {
+  const openForm = useAppUiStore((state) => state.openForm);
   return (
     <div className="flex justify-between">
       <div className="flex flex-col gap-0.75 md:gap-1.5">
@@ -16,7 +18,7 @@ const StatusBar = () => {
         <Filters />
         <Button
           {...invoiceButtonsConfig.newInvoice}
-          onClick={() => console.log(`Creating new Invoice`)}
+          onClick={() => openForm()}
         />
       </div>
     </div>
