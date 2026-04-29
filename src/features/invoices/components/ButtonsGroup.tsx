@@ -12,6 +12,8 @@ const ButtonsGroup = ({
   const selectedInvoiceId = useAppUiStore((state) => state.selectedInvoiceId);
   const delInvoice = useInvoicesStore((state) => state.delInvoice);
   const returnHome = useAppUiStore((state) => state.returnHome);
+  const updateInvoice = useInvoicesStore((state) => state.updateInvoice);
+
   const btnsGroup = {
     read: [
       {
@@ -25,7 +27,7 @@ const ButtonsGroup = ({
       },
       {
         ...invoiceButtonsConfig.paid,
-        onClick: () => console.log("paid"),
+        onClick: () => updateInvoice(selectedInvoiceId, "status", "paid"),
       },
     ],
     create: [

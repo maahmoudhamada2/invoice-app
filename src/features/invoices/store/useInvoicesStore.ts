@@ -10,6 +10,11 @@ interface InvoicesStoreState {
   createNewInvoice: (formData: FormSchema) => void;
   filterInvoices: (filterStatus: InvoiceStatus | "all") => void;
   delInvoice: (invoiceId: string | null) => void;
+  updateInvoice: <k extends keyof InvoiceDataType>(
+    invoiceId: string | null,
+    key: k,
+    value: InvoiceDataType[k],
+  ) => void;
 }
 
 const useInvoicesStore = create<InvoicesStoreState>()(
@@ -27,11 +32,19 @@ const useInvoicesStore = create<InvoicesStoreState>()(
       },
 
       filterInvoices: (filterStatus) => set({ filterStatus: filterStatus }),
+
       delInvoice: (invoiceId) =>
         set((state) => ({
           invoices: state.invoices.filter(
             (invoice) => invoice.id !== invoiceId,
           ),
+        })),
+      updateInvoice: (invoiceId, key, value) =>
+        set((state) => ({
+          invoices: state.invoices.map((invoice) => {
+            if (invoice.id === invoiceId) invoice[key] = value;
+            return invoice;
+          }),
         })),
     }),
 
