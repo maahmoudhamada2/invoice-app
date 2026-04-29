@@ -10,10 +10,11 @@ import useAppUiStore from "@/store/useAppUiStore";
 
 const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
   const returnHome = useAppUiStore((state) => state.returnHome);
+  const isDelPrompt = useAppUiStore((state) => state.isDelPrompt);
   return (
     <>
-      <div className="flex flex-col gap-[24px] md:pb-33.75 xl:pb-13.5">
-        <header className="flex flex-col gap-[31px]">
+      <div className="flex flex-col gap-6 md:pb-33.75 xl:pb-13.5">
+        <header className="flex flex-col gap-7.75">
           <button
             onClick={() => returnHome()}
             className="cursor-pointer text-body-bold flex items-center gap-6 hover:text-muted">
@@ -81,7 +82,7 @@ const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
         </div>
         <div className="w-full h-35 md:hidden"></div>
       </div>
-      {/* <DeletePrompt invoiceId={invoice.id} /> */}
+      {isDelPrompt && <DeletePrompt />}
     </>
   );
 };

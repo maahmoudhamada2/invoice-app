@@ -1,7 +1,8 @@
-import Button from "@/components/Button/Button";
-import invoiceButtonsConfig from "../../config/invoiceButtons.config";
+import ButtonsGroup from "../ButtonsGroup";
+import useAppUiStore from "@/store/useAppUiStore";
 
-const DeletePrompt = ({ invoiceId }: { invoiceId: string }) => {
+const DeletePrompt = () => {
+  const selectedInvoiceId = useAppUiStore((state) => state.selectedInvoiceId);
   return (
     <div
       className="w-full h-full z-1 px-6 
@@ -14,19 +15,10 @@ const DeletePrompt = ({ invoiceId }: { invoiceId: string }) => {
                      pb-[clamp(32px,27.661px+1.3559vw,48px)]">
         <h3 className="text-main text-heading mb-2">Confirm Deletion</h3>
         <p className="text-body text-subtle mb-5.5 leading-5.5  ">
-          Are you sure you want to delete invoice #{invoiceId}? This action
-          cannot be undone.
+          Are you sure you want to delete invoice #{selectedInvoiceId}? This
+          action cannot be undone.
         </p>
-        <div className="flex justify-end gap-2">
-          <Button
-            {...invoiceButtonsConfig.cancel}
-            onClick={() => console.log(`Cancel invoice deletion`)}
-          />
-          <Button
-            {...invoiceButtonsConfig.delete}
-            onClick={() => console.log(`Confirm invoice deletion`)}
-          />
-        </div>
+        <ButtonsGroup groupKey="delete" />
       </section>
     </div>
   );

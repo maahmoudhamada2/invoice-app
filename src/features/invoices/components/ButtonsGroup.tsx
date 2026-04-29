@@ -1,11 +1,17 @@
 import Button from "@/components/Button/Button";
 import invoiceButtonsConfig from "../config/invoiceButtons.config";
+import useAppUiStore from "@/store/useAppUiStore";
+import useInvoicesStore from "../store/useInvoicesStore";
 
 const ButtonsGroup = ({
   groupKey,
 }: {
   groupKey: "read" | "edit" | "delete" | "create";
 }) => {
+  const toggleDelPrompt = useAppUiStore((state) => state.toggleDelPrompt);
+  const selectedInvoiceId = useAppUiStore((state) => state.selectedInvoiceId);
+  const delInvoice = useInvoicesStore((state) => state.delInvoice);
+  const returnHome = useAppUiStore((state) => state.returnHome);
   const btnsGroup = {
     read: [
       {
@@ -15,11 +21,11 @@ const ButtonsGroup = ({
 
       {
         ...invoiceButtonsConfig.delete,
-        onClick: () => console.log("Delete invoice"),
+        onClick: () => toggleDelPrompt(),
       },
       {
         ...invoiceButtonsConfig.paid,
-        onClick: () => console.log("Paid Invoice"),
+        onClick: () => console.log("paid"),
       },
     ],
     create: [
@@ -49,11 +55,15 @@ const ButtonsGroup = ({
     delete: [
       {
         ...invoiceButtonsConfig.cancel,
-        onClick: () => console.log("Cancel invoice deletion"),
+        onClick: () => toggleDelPrompt(),
       },
       {
         ...invoiceButtonsConfig.delete,
-        onClick: () => console.log("Deleting Invoice"),
+        onClick: () => {
+          delInvoice(selectedInvoiceId);
+          toggleDelPrompt();
+          returnHome();
+        },
       },
     ],
   };
