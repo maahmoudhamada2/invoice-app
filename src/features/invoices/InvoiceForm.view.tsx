@@ -15,6 +15,9 @@ const InvoiceForm = () => {
   const methods = useForm({ resolver: zodResolver(formSchema) });
   const createNewInvoice = useInvoicesStore((state) => state.createNewInvoice);
   const returnHome = useAppUiStore((state) => state.returnHome);
+  const {
+    formState: { errors },
+  } = methods;
 
   return (
     <div className="px-6 pt-8.25 flex flex-col gap-5.5">
@@ -38,6 +41,11 @@ const InvoiceForm = () => {
           <FieldSet title="Bill To" fields={invoiceFieldsConfig.clientFields} />
           <FieldSet fields={invoiceFieldsConfig.metaFields} />
           <ProjectItems />
+          {Object.keys(errors).length !== 0 && (
+            <small className="text-field-error text-[#EC5757]">
+              - All fields must be added
+            </small>
+          )}
           <ButtonsGroup groupKey="create" />
           <button type="submit">Send</button>
         </form>
