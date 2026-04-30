@@ -74,11 +74,13 @@ const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
               gapSize="lg"
             />
           </div>
-          <ItemsContainer
-            key={`Items-${invoice.id}`}
-            items={invoice.items}
-            total={invoice.total}
-          />
+          {invoice.items.length != 0 && (
+            <ItemsContainer
+              key={`Items-${invoice.id}`}
+              items={invoice.items}
+              total={invoice.total}
+            />
+          )}
         </div>
         <div className="w-full h-35 md:hidden"></div>
       </div>
