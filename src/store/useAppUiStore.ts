@@ -7,7 +7,9 @@ interface AppUiState {
   isList: boolean;
   isDelPrompt: boolean;
   selectedInvoiceId: string | null;
+  isOpenForm: boolean;
   openForm: () => void;
+  closeForm: () => void;
   returnHome: () => void;
   showInvoice: (invoiceId: string) => void;
   toggleDelPrompt: () => void;
@@ -18,8 +20,10 @@ const useAppUiStore = create<AppUiState>((set) => ({
   isList: true,
   isDelPrompt: false,
   selectedInvoiceId: null,
+  isOpenForm: false,
 
-  openForm: () => set({ view: "form" }),
+  openForm: () => set({ isOpenForm: true }),
+  closeForm: () => set({ isOpenForm: false }),
   returnHome: () => set({ isList: true, view: "invoices" }),
   showInvoice: (invoiceId) => {
     console.log(`DEBUG - AppUi - store - invoiceId = `, invoiceId);

@@ -5,12 +5,13 @@ import useAppUiStore from "./store/useAppUiStore";
 
 const App = () => {
   const view = useAppUiStore((state) => state.view);
+  const isOpenForm = useAppUiStore((state) => state.isOpenForm);
   return (
     <div className="flex flex-col xl:flex-row">
       <Header />
-      <main className="relative">
+      <main className="w-full relative">
         {view === "invoices" && <InvoicePage />}
-        {view === "form" && <InvoiceForm />}
+        {isOpenForm && <InvoiceForm />}
       </main>
     </div>
   );
