@@ -1,11 +1,9 @@
 import Button from "@/components/Button/Button";
-import invoiceFieldsConfig from "../../config/invoiceFields.config";
+import fieldsConfig from "../../config/fields.config";
 import FieldSet from "./FieldSet";
 import invoiceButtonsConfig from "../../config/invoiceButtons.config";
 import deleteIcon from "@/assets/icons/delete-icon.svg";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import FormField from "@/components/FormField";
-import ItemsContainer from "../details/ItemsContainer";
 
 const ProjectItems = () => {
   const { control } = useFormContext();
@@ -17,7 +15,7 @@ const ProjectItems = () => {
       {fields.map((field, idx) => (
         <FieldSet
           key={field.id}
-          fields={invoiceFieldsConfig.itemFields}
+          fields={fieldsConfig.item}
           idPrefix={`items.${idx}.`}>
           <button className="pt-5.75" onClick={() => remove(idx)}>
             <img src={deleteIcon} />

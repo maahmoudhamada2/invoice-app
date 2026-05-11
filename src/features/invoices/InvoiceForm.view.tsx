@@ -1,9 +1,8 @@
 import ButtonsGroup from "./components/ButtonsGroup";
 import FieldSet from "./components/form/FieldSet";
 import ProjectItems from "./components/form/ProjectItems";
-import invoiceFieldsConfig from "./config/invoiceFields.config";
+import fieldsConfig from "./config/fields.config";
 import arrowLeft from "@/assets/icons/arrow-left-icon.svg";
-import useInvoiceForm from "./hooks/useInvoiceForm";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import formSchema from "./schema/form.schema";
@@ -11,16 +10,14 @@ import useInvoicesStore from "./store/useInvoicesStore";
 import useAppUiStore from "@/store/useAppUiStore";
 
 const InvoiceForm = () => {
-  // const formMethods = useInvoiceForm();
   const methods = useForm({ resolver: zodResolver(formSchema) });
   const createNewInvoice = useInvoicesStore((state) => state.createNewInvoice);
-  const openForm = useAppUiStore((state) => state.openForm);
   const closeForm = useAppUiStore((state) => state.closeForm);
 
   const {
     formState: { errors },
   } = methods;
-
+  console.log(errors);
   return (
     <div className="absolute top-0">
       <div className="min-h-screen overflow-y-scroll w-[50%] bg-white px-6 pt-8.25 flex flex-col gap-5.5">
@@ -39,19 +36,14 @@ const InvoiceForm = () => {
         <FormProvider {...methods}>
           <form
             onSubmit={methods.handleSubmit((data) => {
+              console.log("called");
               createNewInvoice(data);
               closeForm();
             })}
             className="">
-            <FieldSet
-              title="Bill From"
-              fields={invoiceFieldsConfig.senderFields}
-            />
-            <FieldSet
-              title="Bill To"
-              fields={invoiceFieldsConfig.clientFields}
-            />
-            <FieldSet fields={invoiceFieldsConfig.metaFields} />
+            <FieldSet title="Bill From" fields={fieldsConfig.sender} />
+            <FieldSet title="Bill To" fields={fieldsConfig.client} />
+            <FieldSet fields={fieldsConfig.meta} />
             <ProjectItems />
             {Object.keys(errors).length !== 0 && (
               <small className="text-field-error text-[#EC5757]">

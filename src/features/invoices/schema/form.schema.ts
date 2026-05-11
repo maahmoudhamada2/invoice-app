@@ -1,9 +1,10 @@
 import * as z from "zod";
 
-const formItemsSchema = z.object({
+export const formItemsSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   price: z.coerce.number().min(1, { message: "Must be at least 1" }),
   quantity: z.coerce.number().min(1, { message: "Must be at least 1" }),
+  total: z.coerce.number(),
 });
 
 const formSchema = z.object({

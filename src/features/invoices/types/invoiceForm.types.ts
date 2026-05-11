@@ -1,26 +1,27 @@
-import { UseFormRegister, FieldErrors } from "react-hook-form";
-import formSchema from "../schema/form.schema";
+import formSchema, { formItemsSchema } from "../schema/form.schema";
 import * as z from "zod";
 
-export interface FormFieldType {
-  container: {
-    size: string;
-  };
-  label: {
-    text: string;
-  };
-  input: {
-    id: string;
-    type: string;
-    disabled: boolean;
-  };
-}
-
 export type FormSchema = z.infer<typeof formSchema>;
-export type FormItemsSchema = FormSchema["items"];
+export type FormItemsSchema = z.infer<typeof formItemsSchema>[];
 
-export interface FormMethodsType {
-  register: UseFormRegister<FormSchema>;
-  onSubmit: (submitHandler?: React.BaseSyntheticEvent) => Promise<void>;
-  errors: FieldErrors<FormSchema>;
-}
+export type FieldsSchema = Omit<FormSchema, "items"> &
+  z.infer<typeof formItemsSchema>;
+
+type FieldTypeConstr<Type> = {
+  [Key in keyof Type]: {
+    container: {
+      size: string;
+    };
+    label: {
+      text: string;
+    };
+    input: {
+      id: Key;
+      disabled: boolean;
+      value: Type[Key] | undefined;
+      type: "text" | "number" | "date" | "email";
+    };
+  };
+}[keyof Type];
+
+export type FormFieldType = FieldTypeConstr<FieldsSchema>;

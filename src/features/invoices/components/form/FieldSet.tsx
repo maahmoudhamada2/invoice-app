@@ -1,5 +1,5 @@
 import FormField from "@/components/FormField";
-import { FormFieldType, FormMethodsType } from "../../types/invoiceForm.types";
+import type { FormFieldType } from "../../types/invoiceForm.types";
 import { ReactNode } from "react";
 
 interface FieldSetProps {
@@ -16,7 +16,7 @@ const FieldSet = ({ idPrefix, title, fields, children }: FieldSetProps) => {
         <legend className="mb-6 text-[#7c5dfa] text-body-bold">{title}</legend>
       )}
       {fields.map((field) => (
-        <FormField key={field.input.id} {...field} idPrefix={idPrefix} />
+        <FormField key={field!.input.id} field={field} idPrefix={idPrefix} />
       ))}
       {children}
     </fieldset>

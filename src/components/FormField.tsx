@@ -2,40 +2,32 @@ import { useFormContext } from "react-hook-form";
 import Input from "./Input";
 import { get } from "react-hook-form";
 import clsx from "clsx";
+import { FormFieldType } from "@/features/invoices/types/invoiceForm.types";
 
 interface FormFieldProps {
-  container: {
-    size: string;
-  };
-  label: {
-    text: string;
-  };
-  input: {
-    id: string;
-    type: string;
-    disabled: boolean;
-  };
+  field: FormFieldType;
   idPrefix?: string;
 }
 
-const FormField = ({ container, label, input, idPrefix }: FormFieldProps) => {
+const FormField = ({ field, idPrefix }: FormFieldProps) => {
   const {
     formState: { errors },
   } = useFormContext();
-  const inputId = idPrefix ? `${idPrefix}${input.id}` : input.id;
+  const inputId = idPrefix ? `${idPrefix}${field.input.id}` : field.input.id;
   const fieldError = get(errors, inputId);
 
   return (
-    <div className={`relative flex flex-col gap-y-2.25 ${container.size}`}>
+    <div
+      className={`relative flex flex-col gap-y-2.25 ${field.container.size}`}>
       <label
         className={clsx(
           `text-body`,
           fieldError ? "text-[#EC5757]" : "text-muted",
         )}
         htmlFor={inputId}>
-        {label.text}
+        {field.label.text}
       </label>
-      <Input {...input} id={inputId} />
+      <Input {...field.input} id={inputId} />
       {fieldError && (
         <small className="text-field-error text-[#EC5757] md:absolute md:top-0 md:right-3">
           {fieldError.message}
