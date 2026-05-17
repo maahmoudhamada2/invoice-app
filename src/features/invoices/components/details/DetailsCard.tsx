@@ -7,6 +7,7 @@ import ButtonsGroup from "../ButtonsGroup";
 import DeletePrompt from "./DeletePrompt";
 import arrowLeft from "@/assets/icons/arrow-left-icon.svg";
 import useAppUiStore from "@/store/useAppUiStore";
+import { format } from "date-fns";
 
 const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
   const returnHome = useAppUiStore((state) => state.returnHome);
@@ -48,13 +49,13 @@ const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
             <div className="flex flex-col justify-between">
               <TextSection
                 heading="Invoice Date"
-                subHeading="21 Aug 2021"
+                subHeading={format(new Date(invoice.createdAt), "dd MMM yyyy")}
                 gapSize="lg"
                 isDate={true}
               />
               <TextSection
                 heading="Payment Due"
-                subHeading="20 Sep 2021"
+                subHeading={format(new Date(invoice.paymentDue), "dd MMM yyyy")}
                 gapSize="lg"
                 isDate={true}
               />
