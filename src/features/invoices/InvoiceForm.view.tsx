@@ -1,29 +1,23 @@
+import useAppUiStore from "@/store/useAppUiStore";
 import ButtonsGroup from "./components/ButtonsGroup";
 import FieldSet from "./components/form/FieldSet";
 import ProjectItems from "./components/form/ProjectItems";
 import fieldsConfig from "./config/fields.config";
 import arrowLeft from "@/assets/icons/arrow-left-icon.svg";
-import { useForm, FormProvider } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import formSchema from "./schema/form.schema";
-import useInvoicesStore from "./store/useInvoicesStore";
-import useAppUiStore from "@/store/useAppUiStore";
+import { FormProvider } from "react-hook-form";
+import useFormSetup from "./hooks/useFormSetup";
 
 const InvoiceForm = () => {
-  const methods = useForm({ resolver: zodResolver(formSchema) });
-  const createNewInvoice = useInvoicesStore((state) => state.createNewInvoice);
-  const closeForm = useAppUiStore((state) => state.closeForm);
-
+  const { methods, closeForm, handleSubmition, item } = useFormSetup();
   const {
     formState: { errors },
   } = methods;
-  console.log(errors);
   return (
     <div className="absolute top-0">
       <div className="min-h-screen overflow-y-scroll w-[50%] bg-white px-6 pt-8.25 flex flex-col gap-5.5">
         <header className="flex flex-col gap-6.5 text-main">
           <button
-            onClick={() => closeForm()}
+            onClick={closeForm}
             className="text-body-bold flex items-center gap-6">
             <img
               src={arrowLeft}
@@ -34,17 +28,11 @@ const InvoiceForm = () => {
           <h2 className="text-heading">New Invoice</h2>
         </header>
         <FormProvider {...methods}>
-          <form
-            onSubmit={methods.handleSubmit((data) => {
-              console.log("called");
-              createNewInvoice(data);
-              closeForm();
-            })}
-            className="">
+          <form onSubmit={handleSubmition} className="">
             <FieldSet title="Bill From" fields={fieldsConfig.sender} />
             <FieldSet title="Bill To" fields={fieldsConfig.client} />
             <FieldSet fields={fieldsConfig.meta} />
-            <ProjectItems />
+            <ProjectItems {...item} />
             {Object.keys(errors).length !== 0 && (
               <small className="text-field-error text-[#EC5757]">
                 - All fields must be added

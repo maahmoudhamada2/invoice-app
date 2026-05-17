@@ -3,12 +3,20 @@ import fieldsConfig from "../../config/fields.config";
 import FieldSet from "./FieldSet";
 import invoiceButtonsConfig from "../../config/invoiceButtons.config";
 import deleteIcon from "@/assets/icons/delete-icon.svg";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import {
+  FieldArrayWithId,
+  UseFieldArrayAppend,
+  UseFieldArrayRemove,
+} from "react-hook-form";
+import { FormInput } from "../../types/invoiceForm.types";
 
-const ProjectItems = () => {
-  const { control } = useFormContext();
-  const { fields, append, remove } = useFieldArray({ control, name: "items" });
+interface ProjectItemsProps {
+  fields: FieldArrayWithId<FormInput, "items", "id">[];
+  append: UseFieldArrayAppend<FormInput, "items">;
+  remove: UseFieldArrayRemove;
+}
 
+const ProjectItems = ({ fields, append, remove }: ProjectItemsProps) => {
   return (
     <div className="flex flex-col pb-6">
       <h2 className="text-[#777f87] font-bold text-[18px]">Item List</h2>
@@ -24,7 +32,7 @@ const ProjectItems = () => {
       ))}
       <Button
         {...invoiceButtonsConfig.newItem}
-        onClick={() => append({ name: "", quantity: 1, price: 0 })}
+        onClick={() => append({ name: "", quantity: 1, price: 0, total: 0 })}
       />
     </div>
   );

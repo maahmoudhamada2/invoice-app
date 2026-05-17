@@ -3,6 +3,8 @@ import * as z from "zod";
 
 export type FormSchema = z.infer<typeof formSchema>;
 export type FormItemsSchema = z.infer<typeof formItemsSchema>[];
+export type FormInput = z.input<typeof formSchema>;
+export type FormOutput = z.output<typeof formSchema>;
 
 export type FieldsSchema = Omit<FormSchema, "items"> &
   z.infer<typeof formItemsSchema>;
