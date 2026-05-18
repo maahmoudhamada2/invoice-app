@@ -1,16 +1,33 @@
 import { FormSchema } from "../types/invoiceForm.types";
 import { InvoiceDataType } from "../types/invoiceList.types";
-import {
-  invDatesFormatter,
-  itemsPriceCalc,
-  idGenerator,
-} from "./formConvHelpers";
+import { itemsPriceCalc, idGenerator } from "./formConvHelpers";
+import { addDays, formatISO } from "date-fns";
 
-const formDataConverter = (formData: FormSchema, invoiceIds: string[]) => {
+const formDataConverter = (
+  invoiceStatus: { isNew: boolean; id: string | null },
+  formData: FormSchema,
+  invoiceIds: string[] | [] = [],
+) => {
   const newInvoice: InvoiceDataType = {
-    ...invDatesFormatter(formData.invoiceDate, Number(formData.paymentTerms)),
     ...itemsPriceCalc(formData.items),
-    id: idGenerator(invoiceIds),
+    id:
+      !invoiceStatus.isNew && invoiceStatus.id
+        ? invoiceStatus.id
+        : idGenerator(invoiceIds),
+    createdAt: formData.invoiceDate
+      ? formatISO(new Date(formData.invoiceDate), {
+          representation: "date",
+        })
+      : "",
+    paymentDue: formData.invoiceDate
+      ? formatISO(
+          addDays(
+            new Date(formData.invoiceDate),
+            Number(formData.paymentTerms),
+          ),
+          { representation: "date" },
+        )
+      : "",
     description: formData.projectDesc,
     paymentTerms: Number(formData.paymentTerms),
     clientName: formData.clientName,
@@ -31,4 +48,25 @@ const formDataConverter = (formData: FormSchema, invoiceIds: string[]) => {
   };
   return newInvoice;
 };
+
+export const invoiceToForm = (invoice: InvoiceDataType) => {
+  const formData: FormSchema = {
+    senderStreet: invoice.senderAddress.street,
+    senderCountry: invoice.senderAddress.country,
+    senderCity: invoice.senderAddress.city,
+    senderPostCode: invoice.senderAddress.postCode,
+    clientName: invoice.clientName,
+    clientEmail: invoice.clientEmail,
+    clientStreet: invoice.clientAddress.street,
+    clientCity: invoice.clientAddress.city,
+    clientPostCode: invoice.clientAddress.postCode,
+    clientCountry: invoice.clientAddress.country,
+    paymentTerms: String(invoice.paymentTerms) as "1" | "14" | "7" | "30",
+    projectDesc: invoice.description,
+    invoiceDate: invoice.createdAt,
+    items: invoice.items,
+  };
+  return formData;
+};
+
 export default formDataConverter;

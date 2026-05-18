@@ -45,7 +45,7 @@ const StatusBar = () => {
         <Filters />
         <Button
           {...invoiceButtonsConfig.newInvoice}
-          onClick={() => openForm()}
+          onClick={() => openForm("create")}
         />
       </div>
     </div>

@@ -8,12 +8,13 @@ interface InvoicesStoreState {
   invoices: InvoiceDataType[] | [];
   filterStatus: InvoiceStatus | "all";
   createNewInvoice: (formData: FormSchema) => void;
+
   filterInvoices: (filterStatus: InvoiceStatus | "all") => void;
   delInvoice: (invoiceId: string | null) => void;
-  updateInvoice: <k extends keyof InvoiceDataType>(
+  updateInvoice: (invoiceId: string | null, userInputs: FormSchema) => void;
+  updateInvStatus: (
     invoiceId: string | null,
-    key: k,
-    value: InvoiceDataType[k],
+    statValue: "paid" | "pending",
   ) => void;
 }
 
@@ -25,7 +26,11 @@ const useInvoicesStore = create<InvoicesStoreState>()(
 
       createNewInvoice: (formData) => {
         const ids = get().invoices.map((invoice) => invoice.id);
-        const newInvoice = formDataConverter(formData, ids);
+        const newInvoice = formDataConverter(
+          { isNew: true, id: null },
+          formData,
+          ids,
+        );
         set((state) => ({
           invoices: [...state.invoices, newInvoice],
         }));
@@ -39,15 +44,24 @@ const useInvoicesStore = create<InvoicesStoreState>()(
             (invoice) => invoice.id !== invoiceId,
           ),
         })),
-      updateInvoice: (invoiceId, key, value) =>
+      updateInvoice: (invoiceId, userInputs) => {
+        return set((state) => ({
+          invoices: state.invoices.map((invoice) =>
+            invoice.id === invoiceId
+              ? formDataConverter({ isNew: false, id: invoiceId }, userInputs)
+              : invoice,
+          ),
+        }));
+      },
+      updateInvStatus: (invoiceId, statValue) =>
         set((state) => ({
-          invoices: state.invoices.map((invoice) => {
-            if (invoice.id === invoiceId) invoice[key] = value;
-            return invoice;
-          }),
+          invoices: state.invoices.map((invoice) =>
+            invoice.id === invoiceId
+              ? ((invoice.status = statValue), invoice)
+              : invoice,
+          ),
         })),
     }),
-
     { name: "invoices", partialize: (state) => ({ invoices: state.invoices }) },
   ),
 );

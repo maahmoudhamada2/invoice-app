@@ -5,6 +5,7 @@ export type ButtonFeats = Omit<ButtonProps, "onClick">;
 export type InvoiceButtonsType = {
   newInvoice: ButtonFeats;
   paid: ButtonFeats;
+  unpaid: ButtonFeats;
   draft: ButtonFeats;
   delete: ButtonFeats;
   edit: ButtonFeats;

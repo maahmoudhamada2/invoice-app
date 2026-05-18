@@ -9,13 +9,22 @@ const invoiceButtonsConfig: InvoiceButtonsType = {
     },
     feats: {
       variant: "primary",
-      type: "submit",
+      type: "button",
       icon: plusIcon,
     },
   },
   paid: {
     content: {
       defaultText: "Mark as Paid",
+    },
+    feats: {
+      variant: "primary",
+      type: "button",
+    },
+  },
+  unpaid: {
+    content: {
+      defaultText: "Mark as unpaid",
     },
     feats: {
       variant: "primary",
@@ -64,7 +73,7 @@ const invoiceButtonsConfig: InvoiceButtonsType = {
     },
     feats: {
       variant: "primary",
-      type: "button",
+      type: "submit",
     },
   },
   saveChanges: {
@@ -73,7 +82,7 @@ const invoiceButtonsConfig: InvoiceButtonsType = {
     },
     feats: {
       variant: "primary",
-      type: "button",
+      type: "submit",
     },
   },
   cancel: {

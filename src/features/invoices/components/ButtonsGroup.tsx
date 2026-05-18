@@ -12,23 +12,36 @@ const ButtonsGroup = ({
   const selectedInvoiceId = useAppUiStore((state) => state.selectedInvoiceId);
   const delInvoice = useInvoicesStore((state) => state.delInvoice);
   const returnHome = useAppUiStore((state) => state.returnHome);
-  const updateInvoice = useInvoicesStore((state) => state.updateInvoice);
+  const updateInvStatus = useInvoicesStore((state) => state.updateInvStatus);
+  const openForm = useAppUiStore((state) => state.openForm);
+  const closeForm = useAppUiStore((state) => state.closeForm);
+  const invoices = useInvoicesStore((state) => state.invoices);
+
+  const selectedInvoice = invoices.find(
+    (invoice) => invoice.id === selectedInvoiceId,
+  );
 
   const btnsGroup = {
     read: [
       {
         ...invoiceButtonsConfig.edit,
-        onClick: () => console.log("Edit Invoice"),
+        onClick: () => openForm("edit"),
       },
 
       {
         ...invoiceButtonsConfig.delete,
         onClick: () => toggleDelPrompt(),
       },
-      {
-        ...invoiceButtonsConfig.paid,
-        onClick: () => updateInvoice(selectedInvoiceId, "status", "paid"),
-      },
+
+      selectedInvoice && selectedInvoice.status === "pending"
+        ? {
+            ...invoiceButtonsConfig.paid,
+            onClick: () => updateInvStatus(selectedInvoiceId, "paid"),
+          }
+        : {
+            ...invoiceButtonsConfig.unpaid,
+            onClick: () => updateInvStatus(selectedInvoiceId, "pending"),
+          },
     ],
     create: [
       {
@@ -47,11 +60,11 @@ const ButtonsGroup = ({
     edit: [
       {
         ...invoiceButtonsConfig.cancel,
-        onClick: () => console.log(`Cancel Invoice`),
+        onClick: () => closeForm(),
       },
       {
         ...invoiceButtonsConfig.saveChanges,
-        onClick: () => console.log("Save changes"),
+        onClick: () => {},
       },
     ],
     delete: [

@@ -8,7 +8,8 @@ interface AppUiState {
   isDelPrompt: boolean;
   selectedInvoiceId: string | null;
   isOpenForm: boolean;
-  openForm: () => void;
+  isEdit: boolean;
+  openForm: (formMode: "create" | "edit") => void;
   closeForm: () => void;
   returnHome: () => void;
   showInvoice: (invoiceId: string) => void;
@@ -21,8 +22,10 @@ const useAppUiStore = create<AppUiState>((set) => ({
   isDelPrompt: false,
   selectedInvoiceId: null,
   isOpenForm: false,
+  isEdit: false,
 
-  openForm: () => set({ isOpenForm: true }),
+  openForm: (formMode) =>
+    set({ isEdit: formMode === "edit", isOpenForm: true }),
   closeForm: () => set({ isOpenForm: false }),
   returnHome: () => set({ isList: true, view: "invoices" }),
   showInvoice: (invoiceId) => {
