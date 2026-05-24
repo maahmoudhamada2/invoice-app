@@ -5,32 +5,28 @@ import { InvoiceDataType } from "../../types/invoiceList.types";
 import ItemsContainer from "./ItemsContainer";
 import ButtonsGroup from "../ButtonsGroup";
 import DeletePrompt from "./DeletePrompt";
-import arrowLeft from "@/assets/icons/arrow-left-icon.svg";
 import useAppUiStore from "@/store/useAppUiStore";
 import { format } from "date-fns";
+import useCrudButtons from "../../hooks/useCrudButtons";
+import useActionButtons from "../../hooks/useSingleButtons";
+import Button from "@/components/Button/Button";
 
 const DetailsCard = ({ invoice }: { invoice: InvoiceDataType }) => {
   const returnHome = useAppUiStore((state) => state.returnHome);
   const isDelPrompt = useAppUiStore((state) => state.isDelPrompt);
+  const readBtns = useCrudButtons("read");
+  const backButton = useActionButtons("goBack", () => returnHome());
   return (
     <>
       <div className="flex flex-col gap-6 md:pb-33.75 xl:pb-13.5">
         <header className="flex flex-col gap-7.75">
-          <button
-            onClick={() => returnHome()}
-            className="cursor-pointer text-body-bold flex items-center gap-6 hover:text-muted">
-            <img
-              src={arrowLeft}
-              alt="A blue magnet arrow points to left side"
-            />
-            Go back
-          </button>
+          <Button {...backButton} />
           <div className="flex w-full bg-white rounded-md">
             <div className="w-full p-6 pb-6.75 rounded-md bg-white flex items-baseline max-md:justify-between md:gap-5  ">
               <p className="text-[#858BB2] text-body">Status</p>
               <StatusBadge status={invoice.status} />
             </div>
-            <ButtonsGroup groupKey={"read"} />
+            <ButtonsGroup buttons={readBtns} />
           </div>
         </header>
         <div

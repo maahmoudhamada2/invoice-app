@@ -1,8 +1,7 @@
-import invoiceButtonsConfig from "../config/invoiceButtons.config";
 import Button from "../../../components/Button/Button";
 import Filters from "./Filters";
-import useAppUiStore from "@/store/useAppUiStore";
 import useInvoicesStore from "../store/useInvoicesStore";
+import useActionButtons from "../hooks/useSingleButtons";
 
 const invoiceCounter = (status: string, invCount: number) => {
   const isAll = status === "all";
@@ -22,9 +21,9 @@ const invoiceCounter = (status: string, invCount: number) => {
 };
 
 const StatusBar = () => {
-  const openForm = useAppUiStore((state) => state.openForm);
   const invoices = useInvoicesStore((state) => state.invoices);
   const filterStatus = useInvoicesStore((state) => state.filterStatus);
+  const newInvoiceBtn = useActionButtons("newInvoice");
 
   const filteredInvoices = invoices.filter((invoice) =>
     filterStatus === "all" ? true : invoice.status === filterStatus,
@@ -43,10 +42,7 @@ const StatusBar = () => {
       </div>
       <div className="flex items-center gap-10">
         <Filters />
-        <Button
-          {...invoiceButtonsConfig.newInvoice}
-          onClick={() => openForm("create")}
-        />
+        <Button {...newInvoiceBtn} />
       </div>
     </div>
   );

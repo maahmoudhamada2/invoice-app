@@ -5,8 +5,9 @@ import formSchema from "../schema/form.schema";
 import useInvoicesStore from "../store/useInvoicesStore";
 import useAppUiStore from "@/store/useAppUiStore";
 import { invoiceToForm } from "../utils/formDataConverter";
+import useCrudButtons from "./useCrudButtons";
 
-const formInitValues: FormInput = {
+export const formInitValues: FormInput = {
   clientName: "",
   clientEmail: "",
   clientStreet: "",
@@ -21,7 +22,7 @@ const formInitValues: FormInput = {
   paymentTerms: "1",
   invoiceDate: "",
   items: [],
-};
+} as const;
 
 const useFormSetup = () => {
   const invoices = useInvoicesStore((state) => state.invoices);
@@ -50,11 +51,25 @@ const useFormSetup = () => {
       : createNewInvoice(userInputs);
     closeForm();
   });
+
+  const customHandls = {
+    create: {
+      saveAndSend: handleSubmition,
+    },
+    edit: {
+      saveChanges: handleSubmition,
+    },
+  };
+
   return {
     methods,
     handleSubmition,
     closeForm: () => closeForm(),
     item: { fields, append, remove },
+    buttons: useCrudButtons(
+      isEdit ? "edit" : "create",
+      customHandls[isEdit ? "edit" : "create"],
+    ),
   };
 };
 

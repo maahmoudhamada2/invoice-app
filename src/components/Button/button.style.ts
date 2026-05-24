@@ -6,6 +6,8 @@ export const btnsVariant = {
   secondary: `bg-btn-secondary text-subtle hover:bg-btn-secondary-hv dark:text-muted`,
   danger: `bg-btn-danger text-[#ffffff] hover:bg-btn-danger-hv`,
   ghost: `bg-btn-ghost text-muted hover:bg-btn-ghost-hv hover:text-[#7e88c3]`,
+  back: `text-body-bold hover:text-muted`,
+  icon: ``,
 };
 
 const getButtonStyle = (variant: VariantKeys, withIcon: boolean) => {

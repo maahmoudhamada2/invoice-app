@@ -1,33 +1,26 @@
 import useAppUiStore from "@/store/useAppUiStore";
-import ButtonsGroup from "./components/ButtonsGroup";
 import FieldSet from "./components/form/FieldSet";
 import ProjectItems from "./components/form/ProjectItems";
 import fieldsConfig from "./config/fields.config";
-import arrowLeft from "@/assets/icons/arrow-left-icon.svg";
 import { FormProvider } from "react-hook-form";
 import useFormSetup from "./hooks/useFormSetup";
+import ButtonsGroup from "./components/ButtonsGroup";
+import Button from "@/components/Button/Button";
+import useActionButtons from "./hooks/useSingleButtons";
 
 const InvoiceForm = () => {
   const isEdit = useAppUiStore((state) => state.isEdit);
-  const { methods, closeForm, handleSubmition, item } = useFormSetup();
+  const backBtn = useActionButtons("goBack", () => closeForm());
+  const { buttons, methods, closeForm, handleSubmition, item } = useFormSetup();
   const {
     formState: { errors },
   } = methods;
+
   return (
     <div className="absolute top-0">
       <div className="min-h-screen overflow-y-scroll w-[50%] bg-white px-6 pt-8.25 flex flex-col gap-5.5">
         <header className="flex flex-col gap-6.5 text-main">
-          {!isEdit && (
-            <button
-              onClick={closeForm}
-              className="text-body-bold flex items-center gap-6">
-              <img
-                src={arrowLeft}
-                alt="A blue magnet arrow points to left side"
-              />
-              Go back
-            </button>
-          )}
+          {!isEdit && <Button {...backBtn} />}
           <h2 className="text-heading">
             {isEdit ? "Edit Invoice" : "New Invoice"}
           </h2>
@@ -43,7 +36,7 @@ const InvoiceForm = () => {
                 - All fields must be added
               </small>
             )}
-            <ButtonsGroup groupKey={isEdit ? "edit" : "create"} />
+            <ButtonsGroup buttons={buttons} />
           </form>
         </FormProvider>
       </div>

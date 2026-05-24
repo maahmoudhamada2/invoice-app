@@ -1,22 +1,42 @@
-import type { ButtonProps } from "./button.types";
+import { VariantKeys } from "./button.types";
 import getButtonStyle from "./button.style";
 import clsx from "clsx";
 
-const Button = ({ content, feats, onClick }: ButtonProps) => {
+interface ButtonProps {
+  content?: {
+    defaultTxt: string;
+    altTxt?: string;
+  };
+  attrbs: {
+    type: "submit" | "button" | "reset";
+    variant: VariantKeys;
+    icon?: string;
+  };
+  onClick: () => void;
+}
+
+const Button = ({ content, attrbs, onClick }: ButtonProps) => {
   return (
     <button
-      type={feats.type}
+      type={attrbs.type}
       onClick={onClick}
-      className={getButtonStyle(feats.variant, Boolean(feats.icon))}>
-      {feats.icon && (
+      className={getButtonStyle(attrbs.variant, Boolean(attrbs.icon))}>
+      {attrbs.icon && (
         <div className="flex justify-center items-center bg-white w-8 aspect-square rounded-full">
-          <img src={feats.icon} />
+          <img src={attrbs.icon} />
         </div>
       )}
-      <span className={clsx(content.altText && `max-md:hidden`)}>
-        {content.defaultText}
-      </span>
-      {content.altText && <span className="md:hidden">{content.altText}</span>}
+
+      {content && (
+        <>
+          <span className={clsx(content.altTxt && `max-md:hidden`)}>
+            {content.defaultTxt}
+          </span>
+          {content.altTxt && (
+            <span className="md:hidden">{content.altTxt}</span>
+          )}
+        </>
+      )}
     </button>
   );
 };

@@ -1,8 +1,10 @@
 import ButtonsGroup from "../ButtonsGroup";
 import useAppUiStore from "@/store/useAppUiStore";
+import useCrudButtons from "../../hooks/useCrudButtons";
 
 const DeletePrompt = () => {
   const selectedInvoiceId = useAppUiStore((state) => state.selectedInvoiceId);
+  const deleteBtns = useCrudButtons("delete");
   return (
     <div
       className="w-full h-full z-1 px-6 
@@ -18,7 +20,7 @@ const DeletePrompt = () => {
           Are you sure you want to delete invoice #{selectedInvoiceId}? This
           action cannot be undone.
         </p>
-        <ButtonsGroup groupKey="delete" />
+        <ButtonsGroup buttons={deleteBtns} />
       </section>
     </div>
   );
