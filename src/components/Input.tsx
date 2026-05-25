@@ -26,7 +26,7 @@ const Input = ({ id, type, disabled }: InputPropsType) => {
       id={id}
       type={type}
       disabled={disabled}
-      {...register(id)}
+      {...register(id, { valueAsNumber: type === "number" })}
     />
   );
 };

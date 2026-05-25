@@ -61,7 +61,7 @@ export const invoiceToForm = (invoice: InvoiceDataType) => {
     clientCity: invoice.clientAddress.city,
     clientPostCode: invoice.clientAddress.postCode,
     clientCountry: invoice.clientAddress.country,
-    paymentTerms: String(invoice.paymentTerms) as "1" | "14" | "7" | "30",
+    paymentTerms: invoice.paymentTerms as 1 | 7 | 14 | 30,
     projectDesc: invoice.description,
     invoiceDate: invoice.createdAt,
     items: invoice.items,

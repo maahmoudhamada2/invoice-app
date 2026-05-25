@@ -2,9 +2,9 @@ import * as z from "zod";
 
 export const formItemsSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
-  price: z.coerce.number().min(1, { message: "Must be at least 1" }),
-  quantity: z.coerce.number().min(1, { message: "Must be at least 1" }),
-  total: z.coerce.number(),
+  price: z.number().min(1, { message: "Must be at least 1" }),
+  quantity: z.number().min(1, { message: "Must be at least 1" }),
+  total: z.number(),
 });
 
 const formSchema = z.object({
@@ -23,7 +23,7 @@ const formSchema = z.object({
   clientCountry: z.string().min(1, { message: "Client country is required" }),
 
   invoiceDate: z.iso.date({ message: "Invoice date is required" }),
-  paymentTerms: z.literal(["1", "7", "14", "30"], {
+  paymentTerms: z.literal([1, 7, 14, 30], {
     message: "Select payment terms",
   }),
   projectDesc: z

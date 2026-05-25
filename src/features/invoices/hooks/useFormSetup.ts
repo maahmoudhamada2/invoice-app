@@ -19,7 +19,7 @@ export const formInitValues: FormInput = {
   senderCity: "",
   senderPostCode: "",
   projectDesc: "",
-  paymentTerms: "1",
+  paymentTerms: 1,
   invoiceDate: "",
   items: [],
 } as const;

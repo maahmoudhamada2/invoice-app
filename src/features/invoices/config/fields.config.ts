@@ -162,7 +162,7 @@ const fieldsConfig: ConfigFieldsSchema = {
       label: { text: "Payment Terms" },
       input: {
         id: "paymentTerms",
-        type: "text", // TODO drop down
+        type: "number", // TODO drop down
         disabled: false,
         value: undefined,
       },
