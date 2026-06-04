@@ -4,35 +4,33 @@ import { itemsPriceCalc, idGenerator } from "./formConvHelpers";
 import { addDays, formatISO } from "date-fns";
 
 const formDataConverter = (
-  invoiceStatus: { isNew: boolean; id: string | null },
+  invoiceStatus: {
+    isNew: boolean;
+    isDraft: boolean;
+    id: string | null;
+  },
   formData: FormSchema,
   invoiceIds: string[] | [] = [],
 ) => {
+  const createdAt = formData.invoiceDate
+    ? new Date(formData.invoiceDate)
+    : new Date();
+
   const newInvoice: InvoiceDataType = {
     ...itemsPriceCalc(formData.items),
     id:
       !invoiceStatus.isNew && invoiceStatus.id
         ? invoiceStatus.id
         : idGenerator(invoiceIds),
-    createdAt: formData.invoiceDate
-      ? formatISO(new Date(formData.invoiceDate), {
-          representation: "date",
-        })
-      : "",
-    paymentDue: formData.invoiceDate
-      ? formatISO(
-          addDays(
-            new Date(formData.invoiceDate),
-            Number(formData.paymentTerms),
-          ),
-          { representation: "date" },
-        )
-      : "",
+    createdAt: formatISO(createdAt, { representation: "date" }),
+    paymentDue: formatISO(addDays(createdAt, formData.paymentTerms), {
+      representation: "date",
+    }),
     description: formData.projectDesc,
-    paymentTerms: Number(formData.paymentTerms),
+    paymentTerms: formData.paymentTerms,
     clientName: formData.clientName,
     clientEmail: formData.clientEmail,
-    status: "pending",
+    status: invoiceStatus.isNew && invoiceStatus.isDraft ? "draft" : "pending",
     senderAddress: {
       street: formData.senderStreet,
       city: formData.senderCity,

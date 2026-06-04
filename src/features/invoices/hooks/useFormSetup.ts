@@ -39,7 +39,7 @@ const useFormSetup = () => {
     );
     if (selectedInvoice) formData = invoiceToForm(selectedInvoice);
   }
-  const methods = useForm<FormInput, unknown, FormOutput>({
+  const methods = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: formData ?? formInitValues,
   });
@@ -48,13 +48,18 @@ const useFormSetup = () => {
   const handleSubmition = methods.handleSubmit((userInputs) => {
     isEdit
       ? updateInvoice(selectedInvoiceId, userInputs)
-      : createNewInvoice(userInputs);
+      : createNewInvoice(userInputs, "pending");
     closeForm();
   });
 
   const customHandls = {
     create: {
       saveAndSend: handleSubmition,
+      draft: () => {
+        const userInputs = methods.getValues();
+        createNewInvoice(userInputs, "draft");
+        closeForm();
+      },
     },
     edit: {
       saveChanges: handleSubmition,

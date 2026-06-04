@@ -7,7 +7,7 @@ import formDataConverter from "../utils/formDataConverter";
 interface InvoicesStoreState {
   invoices: InvoiceDataType[] | [];
   filterStatus: InvoiceStatus | "all";
-  createNewInvoice: (formData: FormSchema) => void;
+  createNewInvoice: (formData: FormSchema, createMode: InvoiceStatus) => void;
 
   filterInvoices: (filterStatus: InvoiceStatus | "all") => void;
   delInvoice: (invoiceId: string | null) => void;
@@ -24,10 +24,10 @@ const useInvoicesStore = create<InvoicesStoreState>()(
       invoices: [],
       filterStatus: "all",
 
-      createNewInvoice: (formData) => {
+      createNewInvoice: (formData, createMode) => {
         const ids = get().invoices.map((invoice) => invoice.id);
         const newInvoice = formDataConverter(
-          { isNew: true, id: null },
+          { isNew: true, isDraft: createMode === "draft", id: null },
           formData,
           ids,
         );
@@ -48,7 +48,14 @@ const useInvoicesStore = create<InvoicesStoreState>()(
         return set((state) => ({
           invoices: state.invoices.map((invoice) =>
             invoice.id === invoiceId
-              ? formDataConverter({ isNew: false, id: invoiceId }, userInputs)
+              ? formDataConverter(
+                  {
+                    isNew: false,
+                    isDraft: invoice.status === "draft",
+                    id: invoiceId,
+                  },
+                  userInputs,
+                )
               : invoice,
           ),
         }));
