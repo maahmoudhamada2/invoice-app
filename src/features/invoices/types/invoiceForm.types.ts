@@ -9,6 +9,8 @@ export type FormOutput = z.output<typeof formSchema>;
 export type FieldsSchema = Omit<FormSchema, "items"> &
   z.infer<typeof formItemsSchema>;
 
+export type PaymentTerms = 1 | 7 | 14 | 30;
+
 type FieldTypeConstr<Type> = {
   [Key in keyof Type]: {
     container: {
@@ -21,7 +23,11 @@ type FieldTypeConstr<Type> = {
       id: Key;
       disabled: boolean;
       value: Type[Key] | undefined;
-      type: "text" | "number" | "date" | "email";
+      type: "text" | "number" | "date" | "email" | "select";
+      options?: {
+        type: "number" | "string";
+        data: { label: string; value: PaymentTerms }[];
+      };
     };
   };
 }[keyof Type];

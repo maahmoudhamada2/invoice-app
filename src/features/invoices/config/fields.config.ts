@@ -162,9 +162,18 @@ const fieldsConfig: ConfigFieldsSchema = {
       label: { text: "Payment Terms" },
       input: {
         id: "paymentTerms",
-        type: "number", // TODO drop down
+        type: "select",
         disabled: false,
         value: undefined,
+        options: {
+          type: "number",
+          data: [
+            { label: "Net 1 Day", value: 1 },
+            { label: "Net 7 Days", value: 7 },
+            { label: "Net 14 Days", value: 14 },
+            { label: "Net 30 Days", value: 30 },
+          ],
+        },
       },
     },
     {
