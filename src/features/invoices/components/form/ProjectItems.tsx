@@ -6,10 +6,13 @@ import {
   FieldArrayWithId,
   UseFieldArrayAppend,
   UseFieldArrayRemove,
+  useFormContext,
+  useWatch,
 } from "react-hook-form";
-import { FormInput } from "../../types/invoiceForm.types";
+import { FormInput, FormItemsSchema } from "../../types/invoiceForm.types";
 import useActionButtons from "../../hooks/useSingleButtons";
 import { formItemValue } from "../../constants/constants";
+import { useEffect } from "react";
 
 interface ProjectItemsProps {
   fields: FieldArrayWithId<FormInput, "items", "id">[];
@@ -19,6 +22,17 @@ interface ProjectItemsProps {
 
 const ProjectItems = ({ fields, append, remove }: ProjectItemsProps) => {
   const addItemBtn = useActionButtons("addItem", () => append(formItemValue));
+  const { setValue } = useFormContext();
+
+  const items: FormItemsSchema = useWatch({ name: "items" });
+
+  useEffect(() => {
+    items?.forEach((item, idx) => {
+      const total = (item.price || 0) * (item.quantity || 0);
+      if (item.total !== total) setValue(`items.${idx}.total`, total);
+    });
+  }, [items]);
+
   return (
     <div className="flex flex-col pb-6">
       <h2 className="text-[#777f87] font-bold text-[18px]">Item List</h2>
