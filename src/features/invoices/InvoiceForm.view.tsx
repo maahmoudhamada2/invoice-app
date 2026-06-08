@@ -10,6 +10,7 @@ import useActionButtons from "./hooks/useSingleButtons";
 
 const InvoiceForm = () => {
   const isEdit = useAppUiStore((state) => state.isEdit);
+  const selectedInvoiceId = useAppUiStore((state) => state.selectedInvoiceId);
   const backBtn = useActionButtons("goBack", () => closeForm());
   const { buttons, methods, closeForm, handleSubmition, item } = useFormSetup();
   const {
@@ -22,7 +23,14 @@ const InvoiceForm = () => {
         <header className="flex flex-col gap-6.5 text-main">
           {!isEdit && <Button {...backBtn} />}
           <h2 className="text-heading">
-            {isEdit ? "Edit Invoice" : "New Invoice"}
+            {isEdit ? (
+              <>
+                Edit <span className="text-subtle">#</span>
+                {selectedInvoiceId}
+              </>
+            ) : (
+              "New Invoice"
+            )}
           </h2>
         </header>
         <FormProvider {...methods}>
