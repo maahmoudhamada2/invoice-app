@@ -46,8 +46,8 @@ const useCrudButtons = <Mode extends keyof CRUD>(
   const defaultHandlers = {
     create: {
       saveAndSend: () => {},
-      discard: () => {},
       draft: () => {},
+      discard: () => closeForm(),
     },
     read: {
       paid: () => updateInvStatus(selectedInvoiceId, "paid"),
