@@ -4,6 +4,7 @@ export type ButtonShape = {
   content?: { defaultTxt: string; altTxt?: string };
   attrbs: {
     type: "button" | "submit" | "reset";
+    disabled: boolean;
     variant: VariantKeys;
     icon?: string;
   };

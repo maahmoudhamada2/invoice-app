@@ -11,6 +11,7 @@ interface ButtonProps {
     type: "submit" | "button" | "reset";
     variant: VariantKeys;
     icon?: string;
+    disabled: boolean;
   };
   onClick: () => void;
 }
@@ -19,6 +20,7 @@ const Button = ({ content, attrbs, onClick }: ButtonProps) => {
   return (
     <button
       type={attrbs.type}
+      disabled={attrbs.disabled}
       onClick={onClick}
       className={getButtonStyle(attrbs.variant, Boolean(attrbs.icon))}>
       {attrbs.icon && (

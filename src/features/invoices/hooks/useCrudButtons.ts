@@ -35,11 +35,15 @@ const useCrudButtons = <Mode extends keyof CRUD>(
       closeForm: state.closeForm,
     })),
   );
-  const { updateInvStatus, delInvoice } = useInvoicesStore(
+  const { invoices, updateInvStatus, delInvoice } = useInvoicesStore(
     useShallow((state) => ({
+      invoices: state.invoices,
       updateInvStatus: state.updateInvStatus,
       delInvoice: state.delInvoice,
     })),
+  );
+  const selectedInvoice = invoices.find(
+    (invoice) => invoice.id === selectedInvoiceId,
   );
   const selectedBtnsGroup = crudButtons[groupKey];
 
@@ -71,6 +75,13 @@ const useCrudButtons = <Mode extends keyof CRUD>(
   return selectedBtnsGroup.map((btnKey) => {
     return {
       ...buttonConfigs[btnKey],
+      attrbs: {
+        ...buttonConfigs[btnKey].attrbs,
+        disabled:
+          btnKey === "paid" && selectedInvoice?.status === "draft"
+            ? true
+            : false,
+      },
       onClick: getHandler(
         btnKey as CRUD[Mode],
         defaultHandlers[groupKey],

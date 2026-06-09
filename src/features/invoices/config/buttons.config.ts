@@ -9,6 +9,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       type: "button",
       variant: "back",
+      disabled: false,
       icon: arrowLeft,
     },
   },
@@ -20,6 +21,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "primary",
       type: "button",
+      disabled: false,
       icon: plusIcon,
     },
   },
@@ -30,6 +32,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "primary",
       type: "button",
+      disabled: false,
     },
   },
   draft: {
@@ -39,6 +42,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "secondary",
       type: "button",
+      disabled: false,
     },
   },
   delete: {
@@ -48,6 +52,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "danger",
       type: "button",
+      disabled: false,
     },
   },
   edit: {
@@ -57,6 +62,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "ghost",
       type: "button",
+      disabled: false,
     },
   },
   discard: {
@@ -66,6 +72,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "ghost",
       type: "reset",
+      disabled: false,
     },
   },
   saveAndSend: {
@@ -75,6 +82,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "primary",
       type: "submit",
+      disabled: false,
     },
   },
   saveChanges: {
@@ -84,6 +92,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "primary",
       type: "submit",
+      disabled: false,
     },
   },
   cancel: {
@@ -93,6 +102,7 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "ghost",
       type: "button",
+      disabled: false,
     },
   },
   addItem: {
@@ -102,12 +112,14 @@ const buttonConfigs: Record<ButtonKeys, ButtonShape> = {
     attrbs: {
       variant: "ghost",
       type: "button",
+      disabled: false,
     },
   },
   delItem: {
     attrbs: {
       type: "button",
       variant: "icon",
+      disabled: false,
       icon: deleteIcon,
     },
   },
