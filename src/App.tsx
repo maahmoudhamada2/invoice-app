@@ -7,9 +7,9 @@ const App = () => {
   const view = useAppUiStore((state) => state.view);
   const isOpenForm = useAppUiStore((state) => state.isOpenForm);
   return (
-    <div className="flex flex-col xl:flex-row">
+    <div className="h-full flex flex-col xl:flex-row">
       <Header />
-      <main className="w-full relative">
+      <main className="w-full flex-1 relative">
         {view === "invoices" && <InvoicePage />}
         {isOpenForm && <InvoiceForm />}
       </main>

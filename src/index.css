@@ -57,6 +57,12 @@
     --color-outline: #252945;
   }
 
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
   body {
     font-family: "League Spartan", sans-serif;
     background-color: var(--color-bg-app);
