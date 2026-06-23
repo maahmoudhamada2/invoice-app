@@ -35,7 +35,7 @@ const ProjectItems = ({ fields, append, remove }: ProjectItemsProps) => {
 
   return (
     <div className="flex flex-col pb-6">
-      <h2 className="text-[#777f87] font-bold text-[18px]">Item List</h2>
+      <h2 className="mb-5.5 text-[#777f87] font-bold text-[18px]">Item List</h2>
       {fields.map((field, idx) => (
         <FieldSet
           key={field.id}

@@ -7,6 +7,7 @@ import useFormSetup from "./hooks/useFormSetup";
 import ButtonsGroup from "./components/ButtonsGroup";
 import Button from "@/components/Button/Button";
 import useActionButtons from "./hooks/useSingleButtons";
+import FormScrollArea from "./components/form/FormScrollArea";
 
 const InvoiceForm = () => {
   const isEdit = useAppUiStore((state) => state.isEdit);
@@ -18,23 +19,28 @@ const InvoiceForm = () => {
   } = methods;
 
   return (
-    <div className="absolute top-0">
-      <div className="min-h-screen overflow-y-scroll w-[50%] bg-white px-6 pt-8.25 flex flex-col gap-5.5">
-        <header className="flex flex-col gap-6.5 text-main">
-          {!isEdit && <Button {...backBtn} />}
-          <h2 className="text-heading">
-            {isEdit ? (
-              <>
-                Edit <span className="text-subtle">#</span>
-                {selectedInvoiceId}
-              </>
-            ) : (
-              "New Invoice"
-            )}
-          </h2>
-        </header>
-        <FormProvider {...methods}>
-          <form onSubmit={handleSubmition} className="">
+    <div
+      onClick={closeForm}
+      className="w-full h-full bg-[#000000af] absolute top-0">
+      <FormProvider {...methods}>
+        <form
+          onSubmit={handleSubmition}
+          className="relative w-full h-full flex flex-col bg-(--color-bg-app) 
+                     md:w-[80%] md:rounded-tr-lg md:rounded-br-lg xl:w-[50%]">
+          <FormScrollArea>
+            <header className="text-main mb-5.5 flex flex-col items-start gap-6.5 md:mb-11.5 ">
+              {!isEdit && <Button {...backBtn} />}
+              <h2 className="text-heading ">
+                {isEdit ? (
+                  <>
+                    Edit <span className="text-subtle">#</span>
+                    {selectedInvoiceId}
+                  </>
+                ) : (
+                  "New Invoice"
+                )}
+              </h2>
+            </header>
             <FieldSet title="Bill From" fields={fieldsConfig.sender} />
             <FieldSet title="Bill To" fields={fieldsConfig.client} />
             <FieldSet fields={fieldsConfig.meta} />
@@ -44,10 +50,16 @@ const InvoiceForm = () => {
                 - All fields must be added
               </small>
             )}
-            <ButtonsGroup buttons={buttons} />
-          </form>
-        </FormProvider>
-      </div>
+            <div
+              className="h-37.5 -mr-6 -ml-6 bg-linear-to-b from-black/0 to-black/10 
+                         md:-mr-14 md:-ml-14"></div>
+          </FormScrollArea>
+          <ButtonsGroup
+            buttons={buttons}
+            style={"bg-white absolute bottom-0"}
+          />
+        </form>
+      </FormProvider>
     </div>
   );
 };

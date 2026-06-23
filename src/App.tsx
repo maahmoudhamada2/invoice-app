@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Header from "./components/Header";
 import InvoiceForm from "./features/invoices/InvoiceForm.view";
 import InvoicePage from "./features/invoices/InvoicePage.view";
@@ -9,7 +10,11 @@ const App = () => {
   return (
     <div className="h-full flex flex-col xl:flex-row">
       <Header />
-      <main className="w-full flex-1 relative">
+      <main
+        className={clsx(
+          `w-full flex-1 relative`,
+          isOpenForm ? "overflow-hidden" : null,
+        )}>
         {view === "invoices" && <InvoicePage />}
         {isOpenForm && <InvoiceForm />}
       </main>
