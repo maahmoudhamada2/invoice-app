@@ -24,7 +24,7 @@ const FormField = ({ field, idPrefix }: FormFieldProps) => {
       <label
         className={clsx(
           `text-body`,
-          fieldError ? "text-[#EC5757]" : "text-muted",
+          fieldError ? "text-danger" : "text-text-muted",
         )}
         htmlFor={inputId}>
         {field.label.text}
@@ -45,7 +45,7 @@ const FormField = ({ field, idPrefix }: FormFieldProps) => {
         )
       )}
       {fieldError && (
-        <small className="text-field-error text-[#EC5757] md:absolute md:top-0 md:right-3">
+        <small className="text-field-error text-danger md:absolute md:top-0 md:right-3">
           {fieldError.message}
         </small>
       )}

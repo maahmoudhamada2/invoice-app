@@ -2,11 +2,11 @@ import clsx from "clsx";
 import type { VariantKeys } from "./button.types";
 
 export const btnsVariant = {
-  primary: `bg-btn-primary text-white hover:bg-btn-primary-hv`,
-  secondary: `bg-btn-secondary text-subtle hover:bg-btn-secondary-hv dark:text-muted`,
-  danger: `bg-btn-danger text-[#ffffff] hover:bg-btn-danger-hv`,
-  ghost: `bg-btn-ghost text-muted hover:bg-btn-ghost-hv hover:text-[#7e88c3]`,
-  back: `text-body-bold hover:text-muted md:hidden`,
+  primary: `bg-brand text-white hover:bg-brand-hover`,
+  secondary: `bg-neutral text-text-subtle hover:bg-neutral-hover`,
+  danger: `bg-danger text-white hover:bg-danger-hover`,
+  ghost: `bg-ghost text-text-secondary hover:bg-ghost-hover hover:text-ghost-text-hover`,
+  back: `text-text-primary text-body-bold hover:text-text-muted md:hidden`,
   icon: ``,
 };
 

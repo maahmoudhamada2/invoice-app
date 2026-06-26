@@ -11,13 +11,13 @@ const Select = ({ id, optType, options }: SelectProps) => {
   const { register } = useFormContext();
   return (
     <select
-      className="custom-select text-main text-body-bold px-5 pt-4.5 pb-3.75 rounded-xs"
+      className="custom-select text-text-primary text-body-bold px-5 pt-4.5 pb-3.75 rounded-xs"
       id={id}
       {...register(id, { valueAsNumber: optType === "number" })}>
       {options.map((opt) => (
         <option
-          className="pl-6 pt-4.25 pb-3.75 bg-transparent not-last-of-type:border-b-2 border-[#dfe3fa]
-                   checked:text-[#7C5DFA] hover:text-[#7C5DFA]"
+          className="pl-6 pt-4.25 pb-3.75 bg-transparent not-last-of-type:border-b-2 border-opt-bottom
+                   checked:text-brand hover:text-brand"
           value={opt.value}>
           {opt.label}
         </option>

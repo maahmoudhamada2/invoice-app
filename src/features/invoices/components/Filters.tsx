@@ -42,7 +42,7 @@ const Filters = () => {
       )}
       <div className="text-body-bold relative">
         <button
-          className="cursor-pointer flex items-center gap-3.5 text-main text-body-bold"
+          className="cursor-pointer flex items-center gap-3.5 text-text-primary text-body-bold"
           onClick={toggleFilterList}>
           <span>
             Filter <span className="max-md:hidden">by status</span>
@@ -54,16 +54,16 @@ const Filters = () => {
         </button>
         {isOpen && (
           <ul
-            className="z-1 w-48 bg-white rounded-md shadow-filter-card px-6 py-6
+            className=" z-1 w-48 bg-dropdown-menu rounded-md shadow-dropdown px-6 py-6
                      absolute -left-5 top-10
                      flex flex-col gap-3.75">
             {filters.map((filter) => (
               <li key={`${filter.value}Status`} className="relative">
-                <label className="peer cursor-pointer">
+                <label className="peer text-text-primary cursor-pointer">
                   <input
                     onChange={() => onChange(filter)}
                     name="filterStatus"
-                    className="peer cursor-pointer bg-[#DFE3FA] hover:border-2 hover:border-[#7C5DFA] - mr-3.25 appearance-none w-4 h-4 rounded-[2px] checked:bg-[#7C5DFA]"
+                    className="peer cursor-pointer bg-radio-bg  hover:border-2 hover:border-brand - mr-3.25 appearance-none w-4 h-4 rounded-xs checked:bg-brand"
                     type="radio"
                     value={filter.value}
                     checked={filter.checked}

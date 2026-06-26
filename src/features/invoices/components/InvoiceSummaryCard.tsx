@@ -11,21 +11,20 @@ const InvoiceSummaryCard = ({
   return (
     <section
       onClick={onClick}
-      className="w-full max-md:max-w-120 bg-card shadow-card cursor-pointer
-                 rounded-md border-2 border-transparent hover:border-card-outline 
+      className="w-full max-md:max-w-120 bg-surface shadow-surface cursor-pointer
+                 rounded-md border-2 border-transparent hover:border-surface-border 
                  grid grid-cols-3 grid-rows-4 md:grid-cols-5 md:grid-rows-1
                  md:items-center px-6 py-6.25">
       <h2
-        className="text-main text-body-bold leading-3.75
+        className="text-text-primary text-body-bold leading-3.75
                    max-md:row-start-1 max-md:row-span-2 md:justify-self-center ">
-        <span className="text-muted">#</span>
+        <span className="text-[#7e88c3]">#</span>
         {invoiceId}
       </h2>
       <time
-        className="text-muted text-body
+        className="text-text-secondary text-body
                    max-md:row-start-3 max-md:row-end-3">
-        <span className="text-muted-variant dark:text-muted">Due</span> 19 Aug
-        2021
+        <span className="text-text-subtle">Due</span> 19 Aug 2021
       </time>
       <p
         className="text-[#858bb2] dark:text-main text-body 
@@ -35,7 +34,7 @@ const InvoiceSummaryCard = ({
         {clientName}
       </p>
       <p
-        className="text-main text-body-bold leading-6 
+        className="text-text-primary text-body-bold leading-6 
                     max-md:row-start-4 max-md:row-end-4 
                     md:justify-self-center">
         £ 1,800.90

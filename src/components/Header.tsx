@@ -4,7 +4,7 @@ import avatarImg from "@/assets/images/image-avatar.jpg";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 xl:min-w-25.75 z-1">
+    <header className="bg-header sticky top-0 xl:min-w-25.75 z-1">
       <div
         className="
         bg-header flex justify-between xl:rounded-tr-lg xl:rounded-br-lg

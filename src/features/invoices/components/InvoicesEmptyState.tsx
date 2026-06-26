@@ -9,10 +9,10 @@ const InvoicesEmptyState = () => {
         alt="Illustration of a woman with a megaphone coming out of an envelope"
       />
       <div className="flex flex-col items-center gap-5.75">
-        <h2 className="text-main text-[24px] font-bold tracking-[-0.75px]">
+        <h2 className="text-text-primary text-[24px] font-bold tracking-[-0.75px]">
           There is nothing here
         </h2>
-        <p className="pl-[14.5px] pr-[15.5px] text-subtle text-body dark:text-muted text-center">
+        <p className="pl-[14.5px] pr-[15.5px] text-text-subtle text-body dark:text-muted text-center">
           Create an invoice by clicking the <b>New</b> button and getstarted
         </p>
       </div>

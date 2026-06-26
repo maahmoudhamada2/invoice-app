@@ -18,10 +18,10 @@ const Input = ({ id, type, disabled }: InputPropsType) => {
   return (
     <input
       className={clsx(
-        `text-main text-body-bold tracking-[-0.25px] px-5 pt-4.5 pb-3.75 not-disabled:border-2  rounded-xs disabled:text-subtle`,
+        `outline-0 caret-brand caret-block bg-surface text-text-primary text-body-bold tracking-[-0.25px] px-5 pt-4.5 pb-3.75 border-2 rounded-xs disabled:text-red-600 `,
         fieldError
-          ? "outline-[#EC5757] border-[#EC5757]"
-          : "border-input-outline outline-[#9277ff]",
+          ? "border-danger"
+          : "border-input-border focus-visible:border-input-focus",
       )}
       id={id}
       type={type}

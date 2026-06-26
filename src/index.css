@@ -5,56 +5,82 @@
 
 @layer base {
   :root {
-    /* Background colors */
-    --color-bg-app: #f8f8fb;
-    --color-bg-header: #373b53;
-    --color-bg-card: #ffffff;
-    --color-backdrop-effect: #000000ad;
+    /* Brand */
+    --brand: #7c5dfa;
+    --brand-hover: #9277ff;
 
-    /* Texts colors */
-    --color-text-main: #0c0e16;
-    --color-text-muted: #7e88c3;
-    --color-text-subtle: #888eb0;
+    /* Text */
+    --text-primary: #0c0e16;
+    --text-secondary: #7e88c3;
+    --text-muted: #7e88c3;
+    --text-subtle: #888eb0;
 
-    /* Buttons colors */
-    --color-primary: #7c5dfa;
-    --color-secondary: #373b53;
-    --color-danger: #ec5757;
-    --color-ghost: #f9fafe;
+    /* Backgrounds */
+    --bg-app: #f8f8fb;
+    --bg-header: #373b53;
+    --bg-surface: #ffffff;
+    --bg-dropdown: #ffffff;
 
-    /* Buttons hover background colors */
-    --color-primary-hover: #9277ff;
-    --color-secondary-hover: #0c0e16;
-    --color-danger-hover: #ff9797;
-    --color-ghost-hover: #dfe3fa;
+    /* Status */
+    --success: #33d69f;
+    --warning: #ff8f00;
+    --danger: #ec5757;
+    --danger-hover: #ff9797;
+    --neutral: #373b53;
+    --neutral-hover: #0c0e16;
+    --ghost: #f9fafe;
+    --ghost-hover: #dfe3fa;
+    --ghost-text-hover: #7e88c3;
+    --inverted: #373b53;
 
-    --color-outline: #dfe3fa;
+    /* Inputs */
+    --input-border: #dfe3fa;
+    --input-opt-btm: #dfe3fa;
+    --input-radio-bg: #dfe3fa;
+
+    /* Shadows */
+    --surface-box-shadow: 0px 10px 10px -10px #48549f1a;
+    --dropdown-box-shadow: 0 10px 20px 0 #48549f40;
   }
-
   .dark {
-    /* Background colors */
-    --color-bg-app: #141625;
-    --color-bg-header: #1e2139;
-    --color-bg-card: #1e2139;
-    --color-text-default: #ffffff;
+    /* Brand */
+    --brand: #7c5dfa;
+    --brand-hover: #9277ff;
 
-    /* Text colors */
-    --color-text-secondary: #dfe3fa;
-    /* --color-text-tertiary:   */
+    /* Text */
+    --text-primary: #ffffff;
+    --text-secondary: #dfe3fa;
+    --text-muted: #888eb0;
+    --text-subtle: #dfe3fa;
 
-    /* Buttons colors */
-    --color-primary-button: #7c5dfa;
-    --color-secondary-button: #373b53;
-    --color-danger-button: #ec5757;
-    --color-ghost-button: #252945;
+    /* Backgrounds */
+    --bg-app: #141625;
+    --bg-dropdown: #252945;
+    --bg-header: #1e2139;
+    --bg-surface: #1e2139;
 
-    /* Buttons hover background colors */
-    --color-primary-button-hover: #9277ff;
-    --color-secondary-button-hover: #1e2139;
-    --color-danger-button-hover: #ff9797;
-    --color-ghost-button-hover: #dfe3fa;
+    /* Status */
+    --success: #33d69f;
+    --warning: #ff8f00;
+    --danger: #ec5757;
+    --danger-hover: #ff9797;
+    --inverted: #dfe3fa;
 
-    --color-outline: #252945;
+    /* Actions */
+    --neutral: #373b53;
+    --neutral-hover: #1e2139;
+    --ghost: #252945;
+    --ghost-hover: #f9fafe;
+    --ghost-text-hover: #7e88c3;
+
+    /* Inputs */
+    --input-border: #252945;
+    --input-opt-btm: #1e2139;
+    --input-radio-bg: #1e2139;
+
+    /* Shadows */
+    --surface-box-shadow: 0px 10px 10px -10px #48549f1a;
+    --dropdown-box-shadow: 0 10px 20px 0 #00000040;
   }
 
   html,
@@ -65,7 +91,7 @@
 
   body {
     font-family: "League Spartan", sans-serif;
-    background-color: var(--color-bg-app);
+    background-color: var(--bg-app);
   }
 
   th,
@@ -76,33 +102,45 @@
 }
 
 @theme {
-  /* Background colors */
-  --color-card: var(--color-bg-card);
-  --color-header: var(--color-bg-header);
-  --color-backdrop: var(--color-backdrop-effect);
+  /* Brand */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
 
-  /* Text colors */
-  --color-main: var(--color-text-main);
-  --color-muted: var(--color-text-muted);
-  --color-subtle: var(--color-text-subtle);
+  /* Backgrounds */
+  --color-app: var(--bg-app);
+  --color-header: var(--bg-header);
+  --color-surface: var(--bg-surface);
+  --color-dropdown-menu: var(--bg-dropdown);
+  --color-backdrop: #00000080;
 
-  /* Buttons colors */
-  --color-btn-primary: var(--color-primary);
-  --color-btn-secondary: var(--color-secondary);
-  --color-btn-danger: var(--color-danger);
-  --color-btn-ghost: var(--color-ghost);
+  /* Text */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
 
-  /* Buttons hover background colors */
-  --color-btn-primary-hv: var(--color-primary-hover);
-  --color-btn-secondary-hv: var(--color-secondary-hover);
-  --color-btn-danger-hv: var(--color-danger-hover);
-  --color-btn-ghost-hv: var(--color-ghost-hover);
+  /* Status */
+  --color-status-paid: var(--success);
+  --color-status-pending: var(--warning);
+  --color-status-draft: var(--inverted);
 
-  --color-card-outline: var(--color-primary);
+  /* Actions */
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-neutral: var(--neutral);
+  --color-neutral-hover: var(--neutral-hover);
+  --color-ghost: var(--ghost);
+  --color-ghost-hover: var(--ghost-hover);
+  --color-ghost-text-hover: var(--ghost-text-hover);
 
-  --color-input-outline: var(--color-outline);
+  /* Borders / Inputs */
+  --color-input-border: var(--input-border);
+  --color-input-focus: var(--color-brand);
+  --color-opt-bottom: var(--input-opt-btm);
+  --color-radio-bg: var(--input-radio-bg);
+  --color-surface-border: var(--brand);
 
-  /* Corner radius */
+  /* Radius */
   --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -110,8 +148,8 @@
   --radius-xl: 24px;
 
   /* Shadows */
-  --shadow-card: 0 10px 10px -10px #48549f1a;
-  --shadow-filter-card: 0 10px 20px 0 #48549f40;
+  --shadow-surface: var(--surface-box-shadow);
+  --shadow-dropdown: var(--dropdown-box-shadow);
 }
 
 @layer utilities {
@@ -143,53 +181,31 @@
 
 @layer components {
   .logo-brand-shape {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 23px 22px;
+    @apply relative flex justify-center items-center px-5.5 py-5.75;
   }
   .logo-brand-shape::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #7c5dfa;
-    border-radius: 0 20px 20px 0;
+    @apply content-[""] w-full h-full absolute top-0 left-0 bg-brand rounded-tr-lg rounded-br-lg;
   }
   .logo-brand-shape::after {
-    content: "";
-    width: 100%;
-    height: 50%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #9277ff;
-    border-radius: 20px 0 20px 0;
+    @apply content-[""] w-full h-[50%] absolute bottom-0 left-0 bg-brand-hover rounded-tl-lg rounded-br-lg;
   }
   .custom-select,
   .custom-select::picker(select) {
     appearance: base-select;
-    cursor: pointer;
-    border: 2px solid var(--color-outline);
+    @apply transition-all duration-300 text-text-primary bg-surface cursor-pointer border-2 border-input-border;
   }
   .custom-select:open {
-    border: 2px solid #7c5dfa;
+    @apply border-2 border-brand;
   }
   .custom-select:open::picker(select) {
-    border: 0;
-    border-radius: 8px;
-    margin-top: 8px;
-    background-color: white;
-    box-shadow: 0 10px 20px 0 #48549f40;
+    @apply border-0 mt-2 rounded-md bg-dropdown-menu shadow-dropdown;
   }
   .custom-select::picker-icon {
     content: url("/src/assets/icons/arrow-down-icon.svg");
+    @apply transition-[rotate] duration-400;
   }
   .custom-select:open::picker-icon {
-    transform: rotate(180deg);
+    @apply rotate-180;
   }
   .custom-select option::checkmark {
     display: none;

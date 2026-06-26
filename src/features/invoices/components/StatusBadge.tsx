@@ -3,16 +3,16 @@ import type { InvoiceStatus } from "../types/invoiceList.types";
 
 const colors = {
   paid: {
-    div: "before:bg-[#33d69f] text-[#33d69f]",
+    div: "before:bg-status-paid text-status-paid",
     span: "bg-[#33d69f]",
   },
   pending: {
-    div: "before:bg-[#ff8f00] text-[#ff8f00]",
+    div: "before:bg-status-pending text-status-pending",
     span: "bg-[#ff8f00]",
   },
   draft: {
-    div: "before:bg-(--color-secondary) text-(--color-secondary)  dark:bg-[#dfe3fa] dark:text-[#dfe3fa]",
-    span: "bg-(--color-secondary) dark:bg-[#dfe3fa]",
+    div: "before:bg-status-draft text-status-draft",
+    span: "bg-status-draft",
   },
 };
 

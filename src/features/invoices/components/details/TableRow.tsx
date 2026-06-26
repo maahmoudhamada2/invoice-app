@@ -25,7 +25,7 @@ const TableRow = ({ isHeader, rowData }: TableRowProps) => {
   return (
     <tr
       className={clsx(
-        `text-muted text-right **:nth-of-type-1:text-left **:nth-of-type-2:text-center`,
+        `text-text-secondary text-right **:nth-of-type-1:text-left **:nth-of-type-2:text-center`,
         isHeader ? ` text-body` : `text-body-bold`,
       )}>
       {rowCells.map((cell, idx) =>
@@ -34,7 +34,7 @@ const TableRow = ({ isHeader, rowData }: TableRowProps) => {
         ) : (
           <td
             key={`cell-${idx + 1}`}
-            className="first:text-main last:text-main">
+            className="first:text-text-primary last:text-text-primary">
             {cell}
           </td>
         ),

@@ -11,7 +11,7 @@ const ItemsTable = ({ items }: { items: ProjectItem[] }) => {
   const colHeadings = ["Item Name", "QTY.", "Price", "Total"];
   return (
     <table className="max-md:hidden w-full">
-      <thead className="">
+      <thead className="text-text-secondary">
         <TableRow isHeader={true} rowData={colHeadings} />
       </thead>
       <tbody>

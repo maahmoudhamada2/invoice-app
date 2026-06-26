@@ -21,16 +21,16 @@ const InvoiceForm = () => {
   return (
     <div
       onClick={closeForm}
-      className="w-full h-full bg-[#000000af] absolute top-0">
+      className="flex flex-col w-full h-full bg-backdrop absolute top-0">
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmition}
-          className="relative w-full h-full flex flex-col bg-(--color-bg-app) 
+          className="relative w-full h-full flex flex-col bg-app 
                      md:w-[80%] md:rounded-tr-lg md:rounded-br-lg xl:w-[50%]">
           <FormScrollArea>
             <header className="text-main mb-5.5 flex flex-col items-start gap-6.5 md:mb-11.5 ">
               {!isEdit && <Button {...backBtn} />}
-              <h2 className="text-heading ">
+              <h2 className="text-heading text-text-primary">
                 {isEdit ? (
                   <>
                     Edit <span className="text-subtle">#</span>
@@ -56,7 +56,7 @@ const InvoiceForm = () => {
           </FormScrollArea>
           <ButtonsGroup
             buttons={buttons}
-            style={"bg-white absolute bottom-0"}
+            style={"bg-white dark:bg-app absolute bottom-0"}
           />
         </form>
       </FormProvider>

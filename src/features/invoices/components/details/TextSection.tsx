@@ -11,8 +11,8 @@ type GapKeys = keyof typeof gaps;
 
 const styles = {
   container: `flex flex-col `,
-  heading: `text-muted text-body`,
-  subHeading: `text-main text-body-bold leading-5`,
+  heading: `text-text-secondary text-body`,
+  subHeading: `text-text-primary text-body-bold leading-5`,
 };
 
 interface HeadingsContProps {
@@ -36,7 +36,7 @@ const TextSection = ({
   return (
     <div className={`${styles.container} ${gaps[gapSize]}`}>
       <h2 className={headingStyle}>
-        {isId && <span className="text-muted">#</span>}
+        {isId && <span className="text-[#888EB0]">#</span>}
         {heading}
       </h2>
       {isDate ? (
