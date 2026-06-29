@@ -1,8 +1,12 @@
 import logo from "@/assets/icons/logo.svg";
-import moonIcon from "@/assets/icons/moon-icon.svg";
+import MoonIcon from "./icons/MoonIcon";
 import avatarImg from "@/assets/images/image-avatar.jpg";
+import useAppUiStore from "@/store/useAppUiStore";
+import SunIcon from "./icons/SunIcon";
 
 const Header = () => {
+  const theme = useAppUiStore((state) => state.theme);
+  const toggleDarkMode = useAppUiStore((state) => state.toggleDarkMode);
   return (
     <header className="bg-header sticky top-0 xl:min-w-25.75 z-1">
       <div
@@ -17,8 +21,10 @@ const Header = () => {
           />
         </div>
         <div className="flex xl:flex-col">
-          <button className="cursor-pointer px-[clamp(24px,3vw,42px)] xl:py-8">
-            <img src={moonIcon} alt="Moon image" />
+          <button
+            onClick={toggleDarkMode}
+            className="cursor-pointer px-[clamp(24px,3vw,42px)] xl:py-8">
+            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
           </button>
           <div className="px-[clamp(24px,3vw,32px)] py-5 border-[#494e6e] max-xl:border-l xl:border-t ">
             <img

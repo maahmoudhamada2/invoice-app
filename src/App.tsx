@@ -8,10 +8,12 @@ import { useEffect } from "react";
 const App = () => {
   const view = useAppUiStore((state) => state.view);
   const isOpenForm = useAppUiStore((state) => state.isOpenForm);
-  const isDark = useAppUiStore((state) => state.isDark);
+  const theme = useAppUiStore((state) => state.theme);
+
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
   return (
     <div className="h-full flex flex-col xl:flex-row">
       <Header />
