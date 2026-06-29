@@ -25,7 +25,7 @@ const InvoiceForm = () => {
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmition}
-          className="relative w-full h-full flex flex-col bg-app 
+          className="relative w-full h-full flex flex-col bg-form 
                      md:w-[80%] md:rounded-tr-lg md:rounded-br-lg xl:w-[50%]">
           <FormScrollArea>
             <header className="text-main mb-5.5 flex flex-col items-start gap-6.5 md:mb-11.5 ">
@@ -51,7 +51,9 @@ const InvoiceForm = () => {
               </small>
             )}
             <div
-              className="h-37.5 -mr-6 -ml-6 bg-linear-to-b from-black/0 to-black/10 
+              className="w-full h-50 rounded-br-lg absolute bottom-0 -mr-6 -ml-6 
+                         bg-linear-to-b from-black/0 to-black/10 pointer-events-none
+                         dark:from-black/0 dark:to-black/50 
                          md:-mr-14 md:-ml-14"></div>
           </FormScrollArea>
           <ButtonsGroup

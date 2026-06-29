@@ -9,8 +9,8 @@ const FormScrollArea = ({ children }: { children: React.ReactNode }) => {
       className="w-full h-full rounded-tr-lg rounded-br-lg">
       <ScrollArea.Viewport
         onClick={(e) => e.stopPropagation()}
-        className="w-full h-full px-6 py-8.25 
-                   md:px-14 md:py-14.75 ">
+        className="w-full h-full px-6 pt-8.25 pb-39
+                   md:px-14 md:pt-14.75">
         {children}
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar

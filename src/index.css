@@ -20,6 +20,7 @@
     --bg-header: #373b53;
     --bg-surface: #ffffff;
     --bg-dropdown: #ffffff;
+    --bg-form: #ffffff;
 
     /* Status */
     --success: #33d69f;
@@ -58,6 +59,7 @@
     --bg-dropdown: #252945;
     --bg-header: #1e2139;
     --bg-surface: #1e2139;
+    --bg-form: #141625;
 
     /* Status */
     --success: #33d69f;
@@ -109,6 +111,7 @@
   /* Backgrounds */
   --color-app: var(--bg-app);
   --color-header: var(--bg-header);
+  --color-form: var(--bg-form);
   --color-surface: var(--bg-surface);
   --color-dropdown-menu: var(--bg-dropdown);
   --color-backdrop: #00000080;
