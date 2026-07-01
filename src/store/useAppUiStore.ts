@@ -35,8 +35,7 @@ const useAppUiStore = create<AppUiState>()(
       closeForm: () => set({ isOpenForm: false }),
       returnHome: () => set({ isList: true, view: "invoices" }),
       showInvoice: (invoiceId) => {
-        console.log(`DEBUG - AppUi - store - invoiceId = `, invoiceId);
-        set({ isList: false, selectedInvoiceId: invoiceId });
+        set({ view: "details", isList: false, selectedInvoiceId: invoiceId });
       },
       toggleDelPrompt: () =>
         set((state) => ({ isDelPrompt: !state.isDelPrompt })),

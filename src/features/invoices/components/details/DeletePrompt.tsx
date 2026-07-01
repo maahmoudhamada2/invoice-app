@@ -5,8 +5,10 @@ import useCrudButtons from "../../hooks/useCrudButtons";
 const DeletePrompt = () => {
   const selectedInvoiceId = useAppUiStore((state) => state.selectedInvoiceId);
   const deleteBtns = useCrudButtons("delete");
+  const toggleDelPrompt = useAppUiStore((state) => state.toggleDelPrompt);
   return (
     <div
+      onClick={toggleDelPrompt}
       className="w-full h-full z-1 px-6 
                  flex justify-center items-center 
                  bg-backdrop fixed top-0 left-0">

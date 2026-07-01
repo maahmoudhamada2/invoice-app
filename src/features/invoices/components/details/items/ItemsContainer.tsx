@@ -12,7 +12,7 @@ interface ItemsListProps {
 
 const ItemsContainer = ({ items, total }: ItemsListProps) => {
   return (
-    <div className="text-body-bold leading-3.75">
+    <div className="mt-9.5 md:mt-11.75 text-body-bold leading-3.75">
       <div
         className="px-6 pt-6.25 pb-5.75 rounded-tl-md rounded-tr-md 
                     bg-ghost flex flex-col gap-6 md:gap-8 ">
