@@ -51,14 +51,16 @@ const InvoiceForm = () => {
               </small>
             )}
             <div
-              className="w-full h-50 rounded-br-lg absolute bottom-0 -mr-6 -ml-6 
+              className="w-full h-50 rounded-br-lg absolute bottom-0 -mr-6 -ml-6
                          bg-linear-to-b from-black/0 to-black/10 pointer-events-none
                          dark:from-black/0 dark:to-black/50 
                          md:-mr-14 md:-ml-14"></div>
           </FormScrollArea>
           <ButtonsGroup
             buttons={buttons}
-            style={"bg-white dark:bg-app absolute bottom-0"}
+            style={
+              "bg-white dark:bg-app absolute bottom-0 py-5.5 px-6 md:px-14"
+            }
           />
         </form>
       </FormProvider>

@@ -22,7 +22,7 @@ const DetailsHeader = ({ status }: { status: InvoiceStatus }) => {
         </div>
         <ButtonsGroup
           buttons={readButtons}
-          style="max-md:-mx-[24px] bg-surface max-md:absolute max-md:bottom-0"
+          style="bg-surface px-6 py-5.5 max-md:-mx-[24px] max-md:absolute max-md:bottom-0 md:py-5 xl:px-8"
         />
       </div>
     </header>
