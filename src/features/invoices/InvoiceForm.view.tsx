@@ -6,7 +6,7 @@ import { FormProvider } from "react-hook-form";
 import useFormSetup from "./hooks/useFormSetup";
 import ButtonsGroup from "./components/ButtonsGroup";
 import Button from "@/components/Button/Button";
-import useActionButtons from "./hooks/useSingleButtons";
+import useActionButtons from "./hooks/useActionButtons";
 import FormScrollArea from "./components/form/FormScrollArea";
 import { useState } from "react";
 

@@ -1,7 +1,7 @@
 import Button from "../../../components/Button/Button";
 import Filters from "./Filters";
 import useInvoicesStore from "../store/useInvoicesStore";
-import useActionButtons from "../hooks/useSingleButtons";
+import useActionButtons from "../hooks/useActionButtons";
 
 const invoiceCounter = (status: string, invCount: number) => {
   const isAll = status === "all";

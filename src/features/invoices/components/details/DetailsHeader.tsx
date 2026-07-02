@@ -3,7 +3,7 @@ import useAppUiStore from "@/store/useAppUiStore";
 import StatusBadge from "../StatusBadge";
 import ButtonsGroup from "../ButtonsGroup";
 import Button from "@/components/Button/Button";
-import useActionButtons from "../../hooks/useSingleButtons";
+import useActionButtons from "../../hooks/useActionButtons";
 import { InvoiceStatus } from "../../types/invoiceList.types";
 
 const DetailsHeader = ({ status }: { status: InvoiceStatus }) => {
