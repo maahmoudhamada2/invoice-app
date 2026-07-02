@@ -17,6 +17,11 @@ const Input = ({ id, type, disabled }: InputPropsType) => {
 
   return (
     <input
+      onFocus={(e) => {
+        const isMobile = window.matchMedia("(max-width: 786px)");
+        if (isMobile.matches)
+          e.target.scrollIntoView({ behavior: "smooth", block: "center" });
+      }}
       className={clsx(
         `outline-0 caret-brand caret-block bg-surface text-text-primary text-body-bold tracking-[-0.25px] px-5 pt-4.5 pb-3.75 border-2 rounded-xs disabled:text-red-600 `,
         fieldError
