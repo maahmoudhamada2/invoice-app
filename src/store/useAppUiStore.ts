@@ -11,7 +11,14 @@ interface AppUiState {
   selectedInvoiceId: string | null;
   isOpenForm: boolean;
   isEdit: boolean;
+  form: {
+    isOpen: boolean;
+    scrollPos: number;
+    isBottom: boolean;
+    isHide: boolean;
+  };
   openForm: (formMode: "create" | "edit") => void;
+  handleFormScroll: (event: Event) => void;
   closeForm: () => void;
   returnHome: () => void;
   showInvoice: (invoiceId: string) => void;
@@ -29,10 +36,36 @@ const useAppUiStore = create<AppUiState>()(
       isOpenForm: false,
       isEdit: false,
       theme: "light",
-
+      form: {
+        isOpen: false,
+        scrollPos: 0,
+        isBottom: false,
+        isHide: false,
+      },
       openForm: (formMode) =>
-        set({ isEdit: formMode === "edit", isOpenForm: true }),
-      closeForm: () => set({ isOpenForm: false }),
+        set((state) => ({
+          isEdit: formMode === "edit",
+          form: { ...state.form, isOpen: true },
+        })),
+      handleFormScroll: (event) => {
+        const targetElem = event.target as HTMLElement;
+        const currentScrollPos = targetElem.scrollTop;
+        return set((state) => ({
+          form: {
+            ...state.form,
+            scrollPos: currentScrollPos,
+            isHide: currentScrollPos > state.form.scrollPos,
+            isBottom:
+              Math.abs(
+                targetElem.scrollHeight -
+                  targetElem.clientHeight -
+                  targetElem.scrollTop,
+              ) <= 1,
+          },
+        }));
+      },
+      closeForm: () =>
+        set((state) => ({ form: { ...state.form, isOpen: false } })),
       returnHome: () => set({ isList: true, view: "invoices" }),
       showInvoice: (invoiceId) => {
         set({ view: "details", isList: false, selectedInvoiceId: invoiceId });

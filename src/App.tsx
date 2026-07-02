@@ -9,7 +9,8 @@ import useInvoicesStore from "./features/invoices/store/useInvoicesStore";
 
 const App = () => {
   const view = useAppUiStore((state) => state.view);
-  const isOpenForm = useAppUiStore((state) => state.isOpenForm);
+  // const isOpenForm = useAppUiStore((state) => state.isOpenForm);
+  const form = useAppUiStore((state) => state.form);
   const theme = useAppUiStore((state) => state.theme);
   const invoices = useInvoicesStore((state) => state.invoices);
   const selectedInvoiceId = useAppUiStore((state) => state.selectedInvoiceId);
@@ -28,10 +29,10 @@ const App = () => {
       <main
         className={clsx(
           `w-full flex-1 relative`,
-          isOpenForm ? "overflow-hidden" : null,
+          form.isOpen ? "overflow-hidden" : null,
         )}>
         {view === "invoices" && <InvoicePage />}
-        {isOpenForm && <InvoiceForm />}
+        {form.isOpen && <InvoiceForm />}
         {view === "details" && targetInvoice && (
           <InvoiceDetails invoice={targetInvoice} />
         )}
