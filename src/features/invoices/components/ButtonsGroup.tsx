@@ -15,7 +15,7 @@ const ButtonsGroup = ({ buttons, style }: ButtonsGrpProps) => {
       onClick={(e) => e.stopPropagation()}
       className={clsx(
         `${style} w-full flex justify-end items-center gap-1.75 md:rounded-tr-lg md:rounded-br-lg  transition-all duration-500`,
-        form.isOpen && form.isHide && !form.isBottom
+        (form.isOpen && form.isHide && !form.isBottom) || form.isFocusInp
           ? "max-md:translate-y-full max-md:opacity-0 "
           : "max-md:translate-y-0 max-md:opacity-100",
       )}>

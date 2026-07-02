@@ -16,10 +16,13 @@ interface AppUiState {
     scrollPos: number;
     isBottom: boolean;
     isHide: boolean;
+    isFocusInp: boolean;
   };
   openForm: (formMode: "create" | "edit") => void;
   handleFormScroll: (event: Event) => void;
   closeForm: () => void;
+  formInpFocus: () => void;
+  formInpBlur: () => void;
   returnHome: () => void;
   showInvoice: (invoiceId: string) => void;
   toggleDelPrompt: () => void;
@@ -41,6 +44,7 @@ const useAppUiStore = create<AppUiState>()(
         scrollPos: 0,
         isBottom: false,
         isHide: false,
+        isFocusInp: false,
       },
       openForm: (formMode) =>
         set((state) => ({
@@ -64,6 +68,10 @@ const useAppUiStore = create<AppUiState>()(
           },
         }));
       },
+      formInpFocus: () =>
+        set((state) => ({ form: { ...state.form, isFocusInp: true } })),
+      formInpBlur: () =>
+        set((state) => ({ form: { ...state.form, isFocusInp: false } })),
       closeForm: () =>
         set((state) => ({ form: { ...state.form, isOpen: false } })),
       returnHome: () => set({ isList: true, view: "invoices" }),
