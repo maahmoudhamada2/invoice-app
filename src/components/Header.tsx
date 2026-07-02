@@ -8,7 +8,7 @@ const Header = () => {
   const theme = useAppUiStore((state) => state.theme);
   const toggleDarkMode = useAppUiStore((state) => state.toggleDarkMode);
   return (
-    <header className="bg-header sticky top-0 xl:min-w-25.75 z-1">
+    <header className="bg-header xl:min-w-25.75 z-1">
       <div
         className="
         bg-header flex justify-between xl:rounded-tr-lg xl:rounded-br-lg
