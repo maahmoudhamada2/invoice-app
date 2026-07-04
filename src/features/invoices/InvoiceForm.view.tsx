@@ -22,7 +22,7 @@ const InvoiceForm = () => {
   return (
     <div
       onClick={closeForm}
-      className="flex flex-col w-full h-full bg-backdrop absolute top-0">
+      className="flex flex-col w-full h-full bg-backdrop absolute top-0 z-3">
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmition}
