@@ -21,7 +21,9 @@ interface ProjectItemsProps {
 }
 
 const ProjectItems = ({ fields, append, remove }: ProjectItemsProps) => {
-  const addItemBtn = useActionButtons("addItem", () => append(formItemValue));
+  const addItemBtn = useActionButtons("addItem", () =>
+    append(formItemValue, { shouldFocus: false }),
+  );
   const { setValue } = useFormContext();
 
   const items: FormItemsSchema = useWatch({ name: "items" });
