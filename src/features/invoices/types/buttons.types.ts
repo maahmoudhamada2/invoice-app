@@ -6,7 +6,11 @@ export type ButtonShape = {
     type: "button" | "submit" | "reset";
     disabled: boolean;
     variant: VariantKeys;
-    icon?: string;
+    icon?: {
+      url: string;
+      customStyle?: string;
+    };
+    customStyle?: string;
   };
 };
 

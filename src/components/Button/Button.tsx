@@ -10,8 +10,12 @@ interface ButtonProps {
   attrbs: {
     type: "submit" | "button" | "reset";
     variant: VariantKeys;
-    icon?: string;
     disabled: boolean;
+    icon?: {
+      url: string;
+      customStyle?: string;
+    };
+    customStyle?: string;
   };
   onClick: () => void;
 }
@@ -22,20 +26,24 @@ const Button = ({ content, attrbs, onClick }: ButtonProps) => {
       type={attrbs.type}
       disabled={attrbs.disabled}
       onClick={onClick}
-      className={getButtonStyle(attrbs.variant, Boolean(attrbs.icon))}>
-      {attrbs.icon && (
-        <div className="flex justify-center items-center bg-white w-8 aspect-square rounded-full">
-          <img src={attrbs.icon} />
+      className={getButtonStyle(attrbs.variant, attrbs.customStyle)}>
+      {attrbs.icon && attrbs.icon.url && (
+        <div
+          className={clsx(
+            `flex justify-center items-center`,
+            attrbs.icon.customStyle && attrbs.icon.customStyle,
+          )}>
+          <img src={attrbs.icon.url} />
         </div>
       )}
 
       {content && (
         <>
-          <span className={clsx(content.altTxt && `max-md:hidden`)}>
+          <span className={clsx(content.altTxt && `max-sm:hidden`)}>
             {content.defaultTxt}
           </span>
           {content.altTxt && (
-            <span className="md:hidden">{content.altTxt}</span>
+            <span className="sm:hidden">{content.altTxt}</span>
           )}
         </>
       )}
