@@ -21,7 +21,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "w-[40%] flex-1",
+        size: "w-[40%] md:w-[25%] flex-1",
       },
       label: {
         text: "City",
@@ -35,7 +35,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "w-[40%] flex-1",
+        size: "w-[40%] md:w-[25%] flex-1",
       },
       label: {
         text: "Post Code",
@@ -49,7 +49,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "flex-1",
+        size: "w-[40%] md:w-[25%] flex-1",
       },
       label: {
         text: "Country",
@@ -103,7 +103,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "w-[40%] flex-1",
+        size: "w-[40%] md:w-[25%] flex-1",
       },
       label: {
         text: "City",
@@ -117,7 +117,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "w-[40%] flex-1",
+        size: "w-[40%] md:w-[25%] flex-1",
       },
       label: {
         text: "Post Code",
@@ -131,7 +131,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "flex-1",
+        size: "w-[40%] md:w-[25%] flex-1",
       },
       label: {
         text: "Country",
@@ -190,7 +190,7 @@ const fieldsConfig: ConfigFieldsSchema = {
   item: [
     {
       container: {
-        size: "w-full",
+        size: "w-full md:w-[38%]",
       },
       label: {
         text: "Item Name",
@@ -204,7 +204,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "w-[20%]",
+        size: "w-[19.5%] md:w-[9%]",
       },
       label: {
         text: "Qty.",
@@ -218,7 +218,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "w-[30%]",
+        size: "w-[30.5%] md:w-[20%]",
       },
       label: {
         text: "Price",
@@ -232,7 +232,7 @@ const fieldsConfig: ConfigFieldsSchema = {
     },
     {
       container: {
-        size: "w-[18%]",
+        size: "w-[20%] md:w-[10%]",
       },
       label: {
         text: "Total",
