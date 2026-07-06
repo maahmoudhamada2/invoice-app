@@ -9,10 +9,10 @@ import { InvoiceStatus } from "../../types/invoiceList.types";
 const DetailsHeader = ({ status }: { status: InvoiceStatus }) => {
   const readButtons = useCrudButtons("read");
   const goBack = useActionButtons("goBack");
-  const returnHome = useAppUiStore((state) => state.returnHome);
+
   return (
     <header className="flex flex-col gap-7.75">
-      <Button {...goBack} onClick={() => returnHome} />
+      <Button {...goBack} />
       <div className="bg-surface shadow-surface flex justify-between rounded-md">
         <div
           className="max-md:w-full px-6 pt-9.25 pb-9.75 

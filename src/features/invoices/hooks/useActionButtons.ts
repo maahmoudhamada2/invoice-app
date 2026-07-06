@@ -4,11 +4,12 @@ import { ActionKeys, ActionBtnHandls } from "../types/buttons.types";
 
 const useActionButtons = (btnKey: ActionKeys, customHandler?: () => void) => {
   const openForm = useAppUiStore((state) => state.openForm);
+  const returnHome = useAppUiStore((state) => state.returnHome);
 
   const defaultHandlers: ActionBtnHandls = {
     newInvoice: () => openForm("create"),
     addItem: () => {},
-    goBack: () => {},
+    goBack: () => returnHome(),
   };
   return {
     ...buttonConfigs[btnKey],
