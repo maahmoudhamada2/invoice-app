@@ -1,15 +1,37 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { ScrollArea } from "radix-ui";
 import useAppUiStore from "@/store/useAppUiStore";
 
 const FormScrollArea = ({ children }: { children: React.ReactNode }) => {
+  const updateFormScrollState = useAppUiStore(
+    (state) => state.updateFormScrollState,
+  );
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const handleFormScroll = useAppUiStore((state) => state.handleFormScroll);
+  const lastScrollPos = useRef(0);
 
   useEffect(() => {
-    scrollAreaRef.current?.addEventListener("scroll", handleFormScroll);
-    return window.removeEventListener("scroll", handleFormScroll);
-  }, []);
+    const viewport = scrollAreaRef.current;
+    if (!viewport) return;
+
+    const onScroll = (e: Event) => {
+      const targetElem = e.target as HTMLElement;
+      const currentPos = targetElem.scrollTop;
+      const isScrollingDown = currentPos > lastScrollPos.current;
+      const isAtTop = currentPos <= 0;
+      const isBottom =
+        Math.abs(
+          targetElem.scrollHeight -
+            targetElem.clientHeight -
+            targetElem.scrollTop,
+        ) <= 1;
+
+      lastScrollPos.current = currentPos;
+      updateFormScrollState(isScrollingDown, isBottom, isAtTop);
+    };
+
+    viewport.addEventListener("scroll", onScroll);
+    return () => viewport.removeEventListener("scroll", onScroll);
+  }, [updateFormScrollState]);
 
   return (
     <ScrollArea.Root

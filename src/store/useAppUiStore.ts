@@ -9,17 +9,19 @@ interface AppUiState {
   isList: boolean;
   isDelPrompt: boolean;
   selectedInvoiceId: string | null;
-  isOpenForm: boolean;
   isEdit: boolean;
   form: {
     isOpen: boolean;
-    scrollPos: number;
     isBottom: boolean;
-    isHide: boolean;
+    isFormChromeHidden: boolean;
     isFocusInp: boolean;
   };
   openForm: (formMode: "create" | "edit") => void;
-  handleFormScroll: (event: Event) => void;
+  updateFormScrollState: (
+    isScrollingDown: boolean,
+    isBottom: boolean,
+    isAtTop: boolean,
+  ) => void;
   closeForm: () => void;
   formInpFocus: () => void;
   formInpBlur: () => void;
@@ -36,14 +38,12 @@ const useAppUiStore = create<AppUiState>()(
       isList: true,
       isDelPrompt: false,
       selectedInvoiceId: null,
-      isOpenForm: false,
       isEdit: false,
       theme: "light",
       form: {
         isOpen: false,
-        scrollPos: 0,
         isBottom: false,
-        isHide: false,
+        isFormChromeHidden: false,
         isFocusInp: false,
       },
       openForm: (formMode) =>
@@ -51,23 +51,14 @@ const useAppUiStore = create<AppUiState>()(
           isEdit: formMode === "edit",
           form: { ...state.form, isOpen: true },
         })),
-      handleFormScroll: (event) => {
-        const targetElem = event.target as HTMLElement;
-        const currentScrollPos = targetElem.scrollTop;
-        return set((state) => ({
+      updateFormScrollState: (isScrollingDown, isBottom, isAtTop) =>
+        set((state) => ({
           form: {
             ...state.form,
-            scrollPos: currentScrollPos,
-            isHide: currentScrollPos > state.form.scrollPos,
-            isBottom:
-              Math.abs(
-                targetElem.scrollHeight -
-                  targetElem.clientHeight -
-                  targetElem.scrollTop,
-              ) <= 1,
+            isFormChromeHidden: isScrollingDown && !isBottom && !isAtTop,
+            isBottom: isBottom,
           },
-        }));
-      },
+        })),
       formInpFocus: () =>
         set((state) => ({ form: { ...state.form, isFocusInp: true } })),
       formInpBlur: () =>
