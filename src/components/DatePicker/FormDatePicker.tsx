@@ -37,8 +37,8 @@ const FormDatePicker = ({ controller }: { controller: DatePickerProps }) => {
         <button
           type="button"
           className={clsx(
-            `cursor-pointer bg-surface text-text-primary text-body-bold px-5 pt-4.5 pb-3.75 rounded-xs border-input-border flex justify-between items-center`,
-            open && "border-2 border-input-focus",
+            `border-2 cursor-pointer bg-surface text-text-primary text-body-bold px-5 pt-4.5 pb-3.75 rounded-xs flex justify-between items-center`,
+            open ? "border-input-focus" : "border-input-border",
           )}>
           {format(date, "dd MMM yyyy")}
           <CalendarIcon />
