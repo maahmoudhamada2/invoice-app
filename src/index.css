@@ -201,7 +201,7 @@
   .custom-select,
   .custom-select::picker(select) {
     appearance: base-select;
-    @apply transition-all duration-300 text-text-primary bg-surface cursor-pointer border-2 border-input-border;
+    @apply transition-[rotate] duration-400 text-text-primary bg-surface cursor-pointer border-2 border-input-border;
   }
   .custom-select:open {
     @apply border-2 border-brand;
