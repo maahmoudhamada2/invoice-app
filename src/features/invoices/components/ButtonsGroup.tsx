@@ -2,7 +2,7 @@ import Button from "@/components/Button/Button";
 import { ButtonShape } from "../types/buttons.types";
 import clsx from "clsx";
 import useAppUiStore from "@/store/useAppUiStore";
-import { shallow, useShallow } from "zustand/shallow";
+import { useShallow } from "zustand/shallow";
 
 interface ButtonsGrpProps {
   buttons: (ButtonShape & { onClick: () => void })[];

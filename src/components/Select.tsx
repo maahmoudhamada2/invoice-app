@@ -1,4 +1,3 @@
-import { PaymentTerms } from "@/features/invoices/types/invoiceForm.types";
 import { useFormContext } from "react-hook-form";
 
 interface SelectProps {

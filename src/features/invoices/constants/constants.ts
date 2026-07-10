@@ -1,5 +1,4 @@
 import { CRUD } from "../types/buttons.types";
-import { FormInput } from "../types/invoiceForm.types";
 
 export const crudButtons = {
   read: ["edit", "delete", "paid"],

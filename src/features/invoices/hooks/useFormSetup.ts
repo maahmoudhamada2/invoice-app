@@ -1,5 +1,5 @@
 import { useFieldArray, useForm } from "react-hook-form";
-import { FormSchema, FormInput, FormOutput } from "../types/invoiceForm.types";
+import { FormSchema, FormInput } from "../types/invoiceForm.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import formSchema from "../schema/form.schema";
 import useInvoicesStore from "../store/useInvoicesStore";

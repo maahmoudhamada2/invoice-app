@@ -1,5 +1,4 @@
 import useCrudButtons from "../../hooks/useCrudButtons";
-import useAppUiStore from "@/store/useAppUiStore";
 import StatusBadge from "../StatusBadge";
 import ButtonsGroup from "../ButtonsGroup";
 import Button from "@/components/Button/Button";
