@@ -1,7 +1,7 @@
-import Button from "../../../components/Button/Button";
+import useInvoicesStore from "../../store/useInvoicesStore";
+import useActionButtons from "../../hooks/useActionButtons";
+import Button from "../../../../components/Button/Button";
 import Filters from "./Filters";
-import useInvoicesStore from "../store/useInvoicesStore";
-import useActionButtons from "../hooks/useActionButtons";
 
 const invoiceCounter = (status: string, invCount: number) => {
   const isAll = status === "all";
@@ -32,7 +32,7 @@ const StatusBar = () => {
   const { mainText, altText } = invoiceCounter(filterStatus, invCount);
 
   return (
-    <div className="flex justify-between">
+    <div className="mb-8 md:mb-13.75 xl:mb-16 flex justify-between">
       <div className="flex flex-col gap-0.75 md:gap-1.5">
         <h1 className="text-text-primary text-heading">Invoices</h1>
         <p className="text-body text-text-subtle">

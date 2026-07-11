@@ -2,7 +2,7 @@ import illustrImg from "@/assets/images/illustration-empty.svg";
 
 const InvoicesEmptyState = () => {
   return (
-    <div className="w-[clamp(206px,25vw,241px)] flex flex-col justify-center items-center gap-10.5 self-center">
+    <div className="flex-1 w-[clamp(206px,25vw,241px)] flex flex-col justify-center items-center gap-10.5 self-center">
       <img
         className="w-[clamp(193px,25vw,240px)] "
         src={illustrImg}

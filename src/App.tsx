@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Header from "./components/Header";
 import InvoiceForm from "./features/invoices/InvoiceForm.view";
-import InvoicePage from "./features/invoices/InvoicePage.view";
+import InvoiceList from "./features/invoices/InvoiceList.view";
 import useAppUiStore from "./store/useAppUiStore";
 import { useEffect } from "react";
 import InvoiceDetails from "./features/invoices/InvoiceDetails.view";
@@ -31,7 +31,7 @@ const App = () => {
           `w-full flex-1 relative`,
           form.isOpen ? "overflow-hidden" : null,
         )}>
-        {view === "invoices" && <InvoicePage />}
+        {view === "invoices" && <InvoiceList />}
         {form.isOpen && <InvoiceForm />}
         {view === "details" && targetInvoice && (
           <InvoiceDetails invoice={targetInvoice} />

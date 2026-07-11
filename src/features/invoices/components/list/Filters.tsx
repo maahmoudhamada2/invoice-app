@@ -1,9 +1,9 @@
-import { useState } from "react";
+import type { InvoiceStatus } from "../../types/invoiceList.types";
+import letterCapitalizer from "../../utils/letterCapitalizer";
 import arrowDownIcon from "@/assets/icons/arrow-down-icon.svg";
+import useInvoicesStore from "../../store/useInvoicesStore";
 import checkIcon from "@/assets/icons/icon-check.svg";
-import useInvoicesStore from "../store/useInvoicesStore";
-import { InvoiceStatus } from "../types/invoiceList.types";
-import letterCapitalizer from "../utils/letterCapitalizer";
+import { useState } from "react";
 import clsx from "clsx";
 
 type FiltersStatusType = { value: "all" | InvoiceStatus; checked: boolean };

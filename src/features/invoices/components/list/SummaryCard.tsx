@@ -1,13 +1,15 @@
-import StatusBadge from "./StatusBadge";
+import StatusBadge from "../StatusBadge";
 import arrowRightIcon from "@/assets/icons/arrow-right-icon.svg";
-import type { InvoiceSumCardType } from "../types/invoiceList.types";
+import { format } from "date-fns";
+import { InvoiceDataType } from "../../types/invoiceList.types";
 
-const InvoiceSummaryCard = ({
-  clientName,
-  invoiceId,
-  status,
-  onClick,
-}: InvoiceSumCardType) => {
+interface SummaryCardProps {
+  invoice: InvoiceDataType;
+  onClick: () => void;
+}
+
+const SummaryCard = ({ invoice, onClick }: SummaryCardProps) => {
+  const { clientName, paymentDue, id, status, total } = invoice;
   return (
     <section
       onClick={onClick}
@@ -19,12 +21,13 @@ const InvoiceSummaryCard = ({
         className="text-text-primary text-body-bold leading-3.75
                    max-md:row-start-1 max-md:row-span-2 md:justify-self-center ">
         <span className="text-[#7e88c3]">#</span>
-        {invoiceId}
+        {id}
       </h2>
       <time
         className="text-text-secondary text-body
                    max-md:row-start-3 max-md:row-end-3">
-        <span className="text-text-subtle">Due</span> 19 Aug 2021
+        <span className="text-text-subtle">Due</span>{" "}
+        {format(new Date(paymentDue), "dd MMM yyy")}
       </time>
       <p
         className="text-[#858bb2] dark:text-main text-body 
@@ -37,7 +40,7 @@ const InvoiceSummaryCard = ({
         className="text-text-primary text-body-bold leading-6 
                     max-md:row-start-4 max-md:row-end-4 
                     md:justify-self-center">
-        £ 1,800.90
+        £ {total.toFixed(2)}
       </p>
       <div
         className="flex justify-center items-center gap-5 
@@ -50,4 +53,4 @@ const InvoiceSummaryCard = ({
   );
 };
 
-export default InvoiceSummaryCard;
+export default SummaryCard;

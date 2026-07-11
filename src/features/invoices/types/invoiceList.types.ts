@@ -1,12 +1,5 @@
 export type InvoiceStatus = "paid" | "pending" | "draft";
 
-export interface InvoiceSumCardType {
-  clientName: string;
-  invoiceId: string;
-  status: InvoiceStatus;
-  onClick: () => void;
-}
-
 export interface InvoiceDataType {
   id: string;
   createdAt: string;
