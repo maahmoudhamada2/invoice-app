@@ -16,7 +16,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "senderStreet",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -30,7 +29,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "senderCity",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -44,7 +42,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "senderPostCode",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -58,7 +55,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "senderCountry",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
   ],
@@ -70,7 +66,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "clientName",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -84,7 +79,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "clientEmail",
         type: "email",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -98,7 +92,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "clientStreet",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -112,7 +105,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "clientCity",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -126,7 +118,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "clientPostCode",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -140,7 +131,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "clientCountry",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
   ],
@@ -154,7 +144,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "invoiceDate",
         type: "date",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -164,7 +153,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "paymentTerms",
         type: "select",
         disabled: false,
-        value: undefined,
         options: {
           type: "number",
           data: [
@@ -183,7 +171,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "projectDesc",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
   ],
@@ -199,7 +186,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "name",
         type: "text",
         disabled: false,
-        value: undefined,
       },
     },
     {
@@ -213,7 +199,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "quantity",
         type: "number",
         disabled: false,
-        value: 1,
       },
     },
     {
@@ -227,7 +212,6 @@ const fieldsConfig: ConfigFieldsSchema = {
         id: "price",
         type: "number",
         disabled: false,
-        value: 0,
       },
     },
     {
@@ -240,8 +224,7 @@ const fieldsConfig: ConfigFieldsSchema = {
       input: {
         id: "total",
         type: "number",
-        disabled: true,
-        value: 0,
+        disabled: false,
       },
     },
   ],

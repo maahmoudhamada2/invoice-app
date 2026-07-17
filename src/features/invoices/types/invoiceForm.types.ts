@@ -22,7 +22,6 @@ type FieldTypeConstr<Type> = {
     input: {
       id: Key;
       disabled: boolean;
-      value: Type[Key] | undefined;
       type: "text" | "number" | "date" | "email" | "select";
       options?: {
         type: "number" | "string";

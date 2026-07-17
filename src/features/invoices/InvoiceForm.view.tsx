@@ -41,10 +41,12 @@ const InvoiceForm = () => {
                 )}
               </h2>
             </header>
-            <FieldSet title="Bill From" fields={fieldsConfig.sender} />
-            <FieldSet title="Bill To" fields={fieldsConfig.client} />
-            <FieldSet fields={fieldsConfig.meta} />
-            <ProjectItems {...item} />
+            <div className="flex flex-col gap-y-5">
+              <FieldSet title="Bill From" fields={fieldsConfig.sender} />
+              <FieldSet title="Bill To" fields={fieldsConfig.client} />
+              <FieldSet fields={fieldsConfig.meta} />
+              <ProjectItems {...item} />
+            </div>
             {Object.keys(errors).length !== 0 && (
               <small className="text-field-error text-[#EC5757]">
                 - All fields must be added
