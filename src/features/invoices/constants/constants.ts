@@ -9,13 +9,6 @@ export const crudButtons = {
   [Mode in keyof CRUD]: CRUD[Mode][];
 };
 
-export const formItemValue = {
-  name: "",
-  price: 0,
-  quantity: 1,
-  total: 0,
-};
-
 export const modifiersClassNames = {
   button_next: "text-brand cursor-pointer",
   button_previous: "text-brand cursor-pointer",

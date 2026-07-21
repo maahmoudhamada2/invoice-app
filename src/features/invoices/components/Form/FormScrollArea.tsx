@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { ScrollArea } from "radix-ui";
 import useAppUiStore from "@/store/useAppUiStore";
+import FormBottomGradient from "./FormBottomGradient";
 
 const FormScrollArea = ({ children }: { children: React.ReactNode }) => {
   const updateFormScrollState = useAppUiStore(
@@ -44,6 +45,7 @@ const FormScrollArea = ({ children }: { children: React.ReactNode }) => {
         className="w-full h-full px-6 pt-8.25 pb-39
                    md:px-14 md:pt-14.75">
         {children}
+        <FormBottomGradient />
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
         onClick={(e) => e.stopPropagation()}

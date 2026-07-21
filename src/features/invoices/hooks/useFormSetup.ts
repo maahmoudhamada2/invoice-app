@@ -1,28 +1,16 @@
 import { useFieldArray, useForm } from "react-hook-form";
-import { FormSchema, FormInput } from "../types/invoiceForm.types";
+import type { FormSchema } from "../types/invoiceForm.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import formSchema from "../schema/form.schema";
 import useInvoicesStore from "../store/useInvoicesStore";
 import useAppUiStore from "@/store/useAppUiStore";
 import { invoiceToForm } from "../utils/formDataConverter";
-import useCrudButtons from "./useCrudButtons";
-
-export const formInitValues: FormInput = {
-  clientName: "",
-  clientEmail: "",
-  clientStreet: "",
-  clientCountry: "",
-  clientCity: "",
-  clientPostCode: "",
-  senderStreet: "",
-  senderCountry: "",
-  senderCity: "",
-  senderPostCode: "",
-  projectDesc: "",
-  paymentTerms: 1,
-  invoiceDate: "",
-  items: [],
-} as const;
+import {
+  FORM_INIT_VALUES,
+  ITEMS_INIT_VALUES,
+} from "../constants/invoiceForm.constants";
+import invoiceFields from "../config/invoiceFields.config";
+import { useMemo } from "react";
 
 const useFormSetup = () => {
   const invoices = useInvoicesStore((state) => state.invoices);
@@ -39,42 +27,62 @@ const useFormSetup = () => {
     );
     if (selectedInvoice) formData = invoiceToForm(selectedInvoice);
   }
+
   const methods = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: formData ?? formInitValues,
+    defaultValues: formData ?? FORM_INIT_VALUES,
   });
-  const { control } = methods;
-  const { fields, append, remove } = useFieldArray({ control, name: "items" });
-  const handleSubmition = methods.handleSubmit((userInputs) => {
+
+  const {
+    control,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = methods;
+  const fieldArrControls = useFieldArray({ control, name: "items" });
+
+  const handleSubmition = handleSubmit((userInputs) => {
     isEdit
       ? updateInvoice(selectedInvoiceId, userInputs)
       : createNewInvoice(userInputs, "pending");
     closeForm();
   });
 
-  const customHandls = {
-    create: {
-      saveAndSend: handleSubmition,
-      draft: () => {
-        const userInputs = methods.getValues();
-        createNewInvoice(userInputs, "draft");
-        closeForm();
+  const fieldArrayIds = fieldArrControls.fields.map((field) => field.id);
+  const formFields = useMemo(
+    () => invoiceFields(fieldArrayIds),
+    [fieldArrControls.fields],
+  );
+
+  const handlers = {
+    form: {
+      create: {
+        saveAndSend: handleSubmition,
+        draft: () => {
+          const userInputs = getValues();
+          createNewInvoice(userInputs, "draft");
+          closeForm();
+        },
+      },
+      edit: {
+        saveChanges: handleSubmition,
       },
     },
-    edit: {
-      saveChanges: handleSubmition,
+    items: {
+      addItem: () => fieldArrControls.append(ITEMS_INIT_VALUES),
+      deleteItem: (idx: number) => fieldArrControls.remove(idx),
     },
   };
 
   return {
+    isEdit,
+    selectedInvoiceId,
     methods,
     handleSubmition,
     closeForm: () => closeForm(),
-    item: { fields, append, remove },
-    buttons: useCrudButtons(
-      isEdit ? "edit" : "create",
-      customHandls[isEdit ? "edit" : "create"],
-    ),
+    formFields,
+    handlers,
+    errors,
   };
 };
 

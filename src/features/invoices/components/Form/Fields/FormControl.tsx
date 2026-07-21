@@ -1,11 +1,11 @@
+import type { FormField } from "@/features/invoices/types/invoiceForm.types";
 import FormDatePicker from "@/components/DatePicker/FormDatePicker";
-import type { FormFieldType } from "../../types/invoiceForm.types";
-import useFormDatePick from "../../hooks/useFormDatePick";
+import useFormDatePick from "../../../hooks/useFormDatePick";
 import Select from "@/components/Select";
 import Input from "@/components/Input";
 
 interface FormControlProps {
-  inptConfig: Omit<FormFieldType["input"], "id"> & { id: string };
+  inptConfig: Omit<FormField["input"], "id"> & { id: string };
   isValid: boolean;
 }
 

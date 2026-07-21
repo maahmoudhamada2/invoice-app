@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const formItemsSchema = z.object({
+export const formItemSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   price: z.number().min(1, { message: "Must be at least 1" }),
   quantity: z.number().min(1, { message: "Must be at least 1" }),
@@ -29,7 +29,7 @@ const formSchema = z.object({
   projectDesc: z
     .string()
     .min(1, { message: "Project description is required" }),
-  items: z.array(formItemsSchema),
+  items: z.array(formItemSchema),
 });
 
 export default formSchema;

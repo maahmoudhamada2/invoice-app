@@ -1,15 +1,14 @@
-import type { FormFieldType } from "../../types/invoiceForm.types";
+import type { FormField } from "@/features/invoices/types/invoiceForm.types";
 import { useFormContext } from "react-hook-form";
 import FormControl from "./FormControl";
 import { get } from "react-hook-form";
 import clsx from "clsx";
 
 interface FieldContainerProps {
-  field: FormFieldType;
-  idPrefix?: string;
+  field: FormField;
 }
 
-const FieldContainer = ({ field, idPrefix = "" }: FieldContainerProps) => {
+const FieldContainer = ({ field }: FieldContainerProps) => {
   const {
     register,
     formState: { errors },
@@ -17,9 +16,8 @@ const FieldContainer = ({ field, idPrefix = "" }: FieldContainerProps) => {
   const {
     container: { size: contSize },
     label: { text: labelText },
-    input: { type: inputType, id, options },
+    input: { type: inputType, id: inputId, options },
   } = field;
-  const inputId = idPrefix ? `${idPrefix}${id}` : id;
   const error = get(errors, inputId);
 
   const shouldParseToNumb =
